@@ -38,6 +38,7 @@ var common = {
         margin: 0,
         paddingTop: 3,
         paddingLeft: 6,
+        height: CSS.platform(25, null),
     },
     input: {
         fontSize: 14,
@@ -46,6 +47,7 @@ var common = {
         padding: 0,
         paddingBottom: 3,
         paddingLeft: 6,
+        height: CSS.platform(25, null),
     },
     buttons: {
         height: 35,
@@ -54,6 +56,7 @@ var common = {
     },
     button: {
         textAlignVertical: 'center',
+        color: colors.DarkBlue,
     }
 }
 

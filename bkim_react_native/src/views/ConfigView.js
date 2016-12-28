@@ -107,7 +107,7 @@ export default class ConfigView extends Component {
                     <View style={configCss.buttons}>
                         <Button onPress={ e=>this._doMessagerInit(e) }
                           title="初始化 IM"
-                          color={colors.DarkBlue}
+                          style={configCss.button}
                         />
                     </View>
                 </View>
@@ -124,7 +124,7 @@ export default class ConfigView extends Component {
                     <View style={configCss.buttons}>
                         <Button onPress={ e=>this._doTalkTo(e) }
                           title="打开用户会话"
-                          color={colors.DarkBlue}
+                          style={configCss.button}
                         />
                     </View>
                 </View>

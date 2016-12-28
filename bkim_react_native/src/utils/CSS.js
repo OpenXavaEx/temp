@@ -3,6 +3,8 @@
  */
  'use strict';
 
+import {Platform} from "react-native";
+ 
 var _mix = function(fromStyles, toStyles){
     if (typeof(fromStyles)!='object'){
         return;
@@ -19,6 +21,15 @@ var _mix = function(fromStyles, toStyles){
     }
 }
 
+var _platform = function(iosStyle, androidStyle){
+	if (Platform.OS=="ios"){
+		return iosStyle;
+	}else{
+		return androidStyle;
+	}
+}
+
 export default {
     mix: _mix,
+    platform: _platform,
 }
