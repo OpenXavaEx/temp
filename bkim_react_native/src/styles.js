@@ -55,8 +55,8 @@ var common = {
         justifyContent: 'flex-end',
     },
     button: {
-        textAlignVertical: 'center',
-        color: colors.DarkBlue,
+        //textAlignVertical: 'center',
+        //color: colors.DarkBlue,
     }
 }
 
