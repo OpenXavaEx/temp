@@ -48,6 +48,8 @@ var common = {
         paddingBottom: 3,
         paddingLeft: 6,
         height: CSS.platform(25, null),
+        borderBottomWidth: CSS.platform(1, null),
+        borderBottomColor: CSS.platform(colors.Gray, null),
     },
     touchableInput: {
         margin: 2,
