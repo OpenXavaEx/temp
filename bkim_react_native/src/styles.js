@@ -49,6 +49,13 @@ var common = {
         paddingLeft: 6,
         height: CSS.platform(25, null),
     },
+    touchableInput: {
+        margin: 2,
+        marginLeft: 12,
+        padding: 6,
+        borderWidth:1,
+        borderColor: colors.Gray,
+    },
     buttons: {
         height: 35,
         flexDirection: 'row',

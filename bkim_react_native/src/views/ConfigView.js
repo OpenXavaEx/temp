@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 import {
     Text,
     View, ScrollView,
-    TextInput, Picker, Button,
+    TextInput, Button,
 } from 'react-native';
+import ModalPicker from 'react-native-modal-picker'
 
 import {colors, configCss} from '../styles';
 
@@ -59,6 +60,15 @@ export default class ConfigView extends Component {
         }
         return result;
     }
+    _buildModalPickerData(values){
+    	var list = [];
+    	for (var i=0; i<values.length; i++){
+    		var value = values[i];
+    		var data = {key:i, label: value||"(未指定)"};
+    		list.push(data);
+    	}
+    	return list;
+    }
     _doMessagerInit(){
         if (!this.state.imAddr || !this.state.hostAddr || !this.state.clientId){
             alert("IM 服务器地址 / 主服务器地址 / 当前用户编号 未填写完全");
@@ -96,14 +106,13 @@ export default class ConfigView extends Component {
                 </View>
                 <View style={configCss.section}>
                     <Text style={configCss.label}>当前用户编号:</Text>
-                    <Picker selectedValue={this.state.clientId}
-                        onValueChange={(id) => this.setState({clientId: id, toClientId: ''})}>
-                        {
-                            TEST_CLIENTS.map((s, i) => {
-                                return <Picker.Item key={i} value={s} label={s?s:'(未指定)'} />
-                            })
-                        }
-                    </Picker>
+                    <ModalPicker
+                        style={configCss.touchableInput}
+                        data={this._buildModalPickerData(TEST_CLIENTS)}
+                        initValue="请选择用户编号"
+                        onChange={ (option)=>{this.setState({clientId:option.label, toClientId:""})} }>
+	                    <Text>{this.state.clientId || "请选择用户编号"}</Text>
+                    </ModalPicker>
                     <View style={configCss.buttons}>
                         <Button onPress={ e=>this._doMessagerInit(e) }
                           title="初始化 IM"
@@ -113,14 +122,13 @@ export default class ConfigView extends Component {
                 </View>
                 <View style={configCss.section}>
                     <Text style={configCss.label}>对话用户编号:</Text>
-                    <Picker selectedValue={this.state.toClientId}
-                        onValueChange={(id) => this.setState({toClientId: id})}>
-                        {
-                            this._getToClientsDynamically().map((s, i) => {
-                                return <Picker.Item key={i} value={s} label={s?s:'(未指定)'} />
-                            })
-                        }
-                    </Picker>
+                    <ModalPicker
+	                    style={configCss.touchableInput}
+	                    data={this._buildModalPickerData(this._getToClientsDynamically())}
+	                    initValue="请选择对话用户编号"
+	                    onChange={ (option)=>{this.setState({toClientId:option.label})} }>
+	                    <Text>{this.state.toClientId || "请选择对话用户编号"}</Text>
+	                </ModalPicker>
                     <View style={configCss.buttons}>
                         <Button onPress={ e=>this._doTalkTo(e) }
                           title="打开用户会话"
