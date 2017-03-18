@@ -1,0 +1,12 @@
+1. Start docker container for react-native development environment
+ - cd current directory
+ - exectue:
+	dc-run react-native-dev
+
+2. If need http proxy for container, run following before start container：
+	export _internet_ip=$(ip route get 8.8.8.8 | awk 'NR==1 {print $NF}')
+	export ENV_http_proxy="-e http_proxy=http://$_internet_ip:8123 -e https_proxy=http://$_internet_ip:8123"
+
+3. Go into your react-native application directory, then
+	react-native run-android
+	react-native start
