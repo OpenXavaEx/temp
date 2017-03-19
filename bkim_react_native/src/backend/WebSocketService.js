@@ -60,11 +60,11 @@ var doWebSocketConnect = function(config, fromUser, toUser, fromUserName, toUser
                 }else if ("RecentHistory"==attachment.dataType){
                     //处理最近的历史信息
                 }else if ("ReconnectData"==attachment.dataType){
-                    inReconnecting=true;
+                    //inReconnecting=true;
                     //closeMainPanel();
                     if(((new Date().getTime())/1000-lastConnectTimestamp/1000)>30){
                         //doInitMessager();
-                        inReconnecting=false;
+                        //inReconnecting=false;
                     }
                 }
             }
