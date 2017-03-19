@@ -6,7 +6,8 @@ import {
     View, ScrollView,
     TextInput, Button,
 } from 'react-native';
-import ModalPicker from 'react-native-modal-picker'
+import ModalPicker from 'react-native-modal-picker';
+import Prompt from 'react-native-prompt';
 
 import {colors, configCss} from '../styles';
 
@@ -33,19 +34,28 @@ export default class ConfigView extends Component {
         super(props);
 
         this.state = {
-            imAddr: '',
-            hostAddr: '',
+            imServerUrl: '',
+            hostServerUrl: '',
             clientId: '',
             toClientId: '',
+            token: '',
+            _promptValue: '',
+            _promptVisible: false
         };
+        this.initialized = false;
+
         var self = this;
         perf.load('ConfigView', function(values){
-            self.setState(values);
+            if (values){
+                values._promptVisible = false;
+                self.setState(values);
+            }
         });
     }
     setState(values) {
-        super.setState(values);
-        perf.save('ConfigView', this.state);
+        super.setState(values, function(){
+            perf.save('ConfigView', this.state);
+        });
     }
     _getToClientsDynamically() {
         var selfId = this.state.clientId;
@@ -69,19 +79,40 @@ export default class ConfigView extends Component {
     	}
     	return list;
     }
+    _doPromptSubmit(value){
+        this.setState({
+            imServerUrl: value + ":7778/boke-messager",
+            hostServerUrl: value + ":8080/im-service/${service}.json",
+            _promptVisible: false,
+            _promptValue: value
+        });
+    }
     _doMessagerInit(){
-        if (!this.state.imAddr || !this.state.hostAddr || !this.state.clientId){
+        if (!this.state.imServerUrl && !this.state.hostServerUrl){
+            this.setState({_promptVisible: true});
+            return;
+        }
+
+        if (!this.state.imServerUrl || !this.state.hostServerUrl || !this.state.clientId){
             alert("IM 服务器地址 / 主服务器地址 / 当前用户编号 未填写完全");
             return;
         }
-        alert("TODO: \n"+JSON.stringify(this.state));
+        var token = "dev-mode-test-token:" + this.state.clientId; //测试用的 token
+        this.setState({token: token});
+
+        this.props.configCallback("init", this.state);
+        this.initialized = true;
     }
     _doTalkTo(){
         if (!this.state.toClientId){
             alert("对话用户编号 未填写完全");
             return;
         }
-        alert("TODO: \n"+JSON.stringify(this.state));
+        if (!this.initialized){
+            alert("IM 未初始化，请先执行 [初始化 IM]");
+            return;
+        }
+        this.props.configCallback("talk", this.state);
     }
     _renderBody() {
         return (
@@ -91,8 +122,8 @@ export default class ConfigView extends Component {
                     <TextInput
                         style={configCss.input}
                         placeholder="example.com:7778/boke-messager"
-                        value={this.state.imAddr}
-                        onChangeText={(text) => this.setState({imAddr: text})}
+                        value={this.state.imServerUrl}
+                        onChangeText={(text) => this.setState({imServerUrl: text})}
                     />
                 </View>
                 <View style={configCss.section}>
@@ -100,10 +131,11 @@ export default class ConfigView extends Component {
                     <TextInput
                         style={configCss.input}
                         placeholder="example.com:8080/im-service/${service}.json"
-                        value={this.state.hostAddr}
-                        onChangeText={(text) => this.setState({hostAddr: text})}
+                        value={this.state.hostServerUrl}
+                        onChangeText={(text) => this.setState({hostServerUrl: text})}
                     />
                 </View>
+
                 <View style={configCss.section}>
                     <Text style={configCss.label}>当前用户编号:</Text>
                     <ModalPicker
@@ -136,6 +168,14 @@ export default class ConfigView extends Component {
                         />
                     </View>
                 </View>
+
+                <Prompt
+                    title="快速输入服务器地址："
+                    placeholder="example.com"
+                    defaultValue={this.state._promptValue}
+                    visible={this.state._promptVisible}
+                    onCancel={() => this.setState({ _promptVisible: false})}
+                    onSubmit={(value) => this._doPromptSubmit(value)}/>
             </ScrollView>
         );
     }

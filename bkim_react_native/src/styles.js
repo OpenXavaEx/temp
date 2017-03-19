@@ -83,7 +83,57 @@ var configCss = {
 }
 CSS.mix(common, configCss);
 
+/** Styles for ContactsView */
+var contactsCss = {
+    groupHeader: {
+        backgroundColor: colors.LightGray,
+        padding: 12,
+        borderColor: colors.LightGray,
+        borderTopColor: colors.White,
+        borderWidth: 1,
+        flexDirection: 'row'
+    },
+    groupTitle: {
+        color: colors.DimGray,
+        fontWeight: 'bold',
+        fontSize: 14,
+        flex: 1
+    },
+    groupTags: {
+        color: colors.Black,
+        fontSize: 12,
+    },
+    contact: {
+        padding: 10,
+        flexDirection: 'row',
+        borderBottomColor: colors.LightGray,
+        borderBottomWidth: 1
+    },
+    contactAvatarContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 50,
+    },
+    contactAvatar: {
+        borderRadius: 5,
+        width: 30,
+        height: 30
+    },
+    contactNameContainer: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        height: 50,
+    },
+    contactName: {
+        color: colors.Black,
+        fontSize: 14,
+    }
+}
+CSS.mix(common, contactsCss);
+
 module.exports = {
     colors,
-	configCss
+	configCss,
+    contactsCss
 }

@@ -4,10 +4,11 @@
  'use strict';
 
 import {Platform} from "react-native";
- 
+
 var _mix = function(fromStyles, toStyles){
     if (typeof(fromStyles)!='object'){
-        return;
+        //如果是最底层的 CSS 属性, 实际上 _mix 不会对 toStyles 对象造成影响 -- 不会覆盖
+        return toStyles;
     }
     for (var itemName in fromStyles){
         var style = fromStyles[itemName];
@@ -19,6 +20,7 @@ var _mix = function(fromStyles, toStyles){
             }
         }
     }
+    return toStyles;
 }
 
 var _platform = function(iosStyle, androidStyle){
