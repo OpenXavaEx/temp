@@ -132,8 +132,40 @@ var contactsCss = {
 }
 CSS.mix(common, contactsCss);
 
+/** Styles for SessionsView */
+var sessionsCss = {
+    session: {
+        padding: 10,
+        flexDirection: 'row',
+        borderBottomColor: colors.LightGray,
+        borderBottomWidth: 1
+    },
+    sessionAvatarContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 50,
+    },
+    sessionAvatar: {
+        borderRadius: 5,
+        width: 30,
+        height: 30
+    },
+    sessionNameContainer: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        height: 50,
+    },
+    sessionName: {
+        color: colors.Black,
+        fontSize: 14,
+    }
+};
+CSS.mix(common, sessionsCss);
+
 module.exports = {
     colors,
 	configCss,
-    contactsCss
+    contactsCss,
+    sessionsCss
 }

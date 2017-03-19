@@ -9,12 +9,16 @@ import {
 
 import ScrollableTabView, {DefaultTabBar, } from 'react-native-scrollable-tab-view';
 
+import PubSub from 'pubsub-js';
+
 import styles from './styles';
 
 import ConfigView from './views/ConfigView';
 import ContactsView from './views/ContactsView';
+import SessionsView from './views/SessionsView';
 
 import HostService from './backend/HostService';
+import WebSocketService from './backend/WebSocketService';
 
 var IM_CONFIGS = {/*
     imServerUrl:    'example.com:7778/boke-messager',
@@ -23,10 +27,30 @@ var IM_CONFIGS = {/*
     token:          'dev-mode-test-token:boke-test-002'
 */};
 
-var doInitIM = function(app){
+var doInitIM = function(app, manual){
+    var ws = new WebSocketService(IM_CONFIGS);
+    ws.initConnect();
+
     var hs = new HostService(IM_CONFIGS);
     hs.loadContactsData(function(data){
-        app.setState({contactsData: data});
+        app.setState({contactsData: data}, function(){
+            if (manual){    //如果是测试时手动通过按钮初始化, 切换到联系人 Tab
+                switch2Tab(app, 0);
+            }
+        });
+    });
+}
+
+var switch2Tab = function(app, index){
+    setTimeout(function(){  //不使用 setTimeout 时 Tab head 切换过去，但是 body 部分不会切换
+        var tab = app.refs.mainTab;
+        tab.goToPage(index);
+    }, 200);
+}
+
+var subscribeMessages = function(app){
+    PubSub.subscribe("MyActiveConnectData", function(msg, data){
+        app.setState({myActiveConnectData: data});
     });
 }
 
@@ -35,15 +59,15 @@ export default class App extends Component {
         super(props);
 
         this.state = {
-            contactsData: []
+            contactsData: [],
+            myActiveConnectData: [],
         };
+
+        subscribeMessages(this);
     }
     componentDidMount() {
-        var tab = this.refs.mainTab;
         if (!this.props.config){
-            setTimeout(function(){  //不使用 setTimeout 时 Tab head 切换过去，但是 body 部分不会切换
-                tab.goToPage(2);    //如果在启动阶段没有 IM 配置数据, 直接显示 “配置” Tab
-            }, 200);
+            switch2Tab(this, 2);  //如果在启动阶段没有 IM 配置数据, 直接显示 “配置” Tab
         }else{
             IM_CONFIGS = this.props.config;
             doInitIM(this);
@@ -58,7 +82,7 @@ export default class App extends Component {
                 clientId: configObject.clientId,
                 token: configObject.token,
             };
-            doInitIM(this);
+            doInitIM(this, true);
         }
         if ("talk"==action){
             var toClientId = configObject.toClientId;
@@ -82,9 +106,7 @@ export default class App extends Component {
               style={{marginTop: 10, }}
               renderTabBar={() => <DefaultTabBar/>} >
                 <ContactsView tabLabel='联系人' contacts={this.state.contactsData}/>
-                <ScrollView tabLabel='会话'>
-                    <Text>Sessions</Text>
-                </ScrollView>
+                <SessionsView tabLabel='会话' sessions={this.state.myActiveConnectData.sessions}/>
                 {this._configTabRenderIf()}
             </ScrollableTabView>
         );
