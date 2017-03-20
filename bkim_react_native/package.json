@@ -14,7 +14,8 @@
     "react-native-modal-picker": "0.0.16",
     "react-native-prompt": "^1.0.0",
     "react-native-scrollable-tab-view": "^0.7.0",
-    "react-native-storage": "^0.1.4"
+    "react-native-storage": "^0.1.4",
+    "react-native-vector-icons": "^4.0.0"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",

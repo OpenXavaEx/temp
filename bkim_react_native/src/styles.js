@@ -93,6 +93,11 @@ var contactsCss = {
         borderWidth: 1,
         flexDirection: 'row'
     },
+    groupIcon: {
+        color: colors.DimGray,
+        fontSize: 16,
+        paddingRight: 12
+    },
     groupTitle: {
         color: colors.DimGray,
         fontWeight: 'bold',

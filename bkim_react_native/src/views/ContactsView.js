@@ -8,6 +8,7 @@ import {
     Image,
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Accordion from 'react-native-accordion';
 
 import {colors, contactsCss} from '../styles';
@@ -35,8 +36,10 @@ export default class ContactsView extends Component {
         var users = group.users||[];
         var groupType = group.groupType;
 
+        var icon = ("blacklist"==groupType)?"chain-broken":"folder-open-o";
         var header = (
             <View style={contactsCss.groupHeader}>
+                <Icon name={icon} style={contactsCss.groupIcon}/>
                 <Text style={contactsCss.groupTitle}>{group.groupName}</Text>
                 <Text style={contactsCss.groupTags}>{users.length}</Text>
             </View>
