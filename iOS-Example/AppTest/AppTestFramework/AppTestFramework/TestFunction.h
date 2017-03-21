@@ -11,6 +11,6 @@
 
 @interface TestFunction : NSObject
 
--(void)callFunc:(UIViewController *) view ;
+-(void)callFunc: (UIViewController*)view : (NSString*)title ;
 
 @end

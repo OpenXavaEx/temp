@@ -10,12 +10,12 @@
 
 @implementation TestFunction
 
--(void)callFunc: (UIViewController *)view {
+-(void)callFunc: (UIViewController*)view: (NSString*)title {
     NSLog(@"call function");
     
     
     UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:@"Testing"
+                                 alertControllerWithTitle:title
                                  message:@"Test begining ..."
                                  preferredStyle:UIAlertControllerStyleAlert
                                  ];

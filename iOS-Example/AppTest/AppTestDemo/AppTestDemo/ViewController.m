@@ -30,7 +30,7 @@
 {
     
     TestFunction *test = [[TestFunction alloc]init];
-    [test callFunc:self];
+    [test callFunc:self:@"测试"];
 }
 
 @end
