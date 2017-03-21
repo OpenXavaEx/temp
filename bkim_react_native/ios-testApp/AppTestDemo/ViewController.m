@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <AppTestFramework/AppTestFramework.h>
+#import <BKIM_ReactNative_Framework/BKIM_ReactNative_Framework.h>
 
 @interface ViewController ()
 
@@ -29,7 +29,7 @@
 - (IBAction) doTest
 {
     
-    TestFunction *test = [[TestFunction alloc]init];
+    BKIM_RN *test = [[BKIM_RN alloc]init];
     [test callFunc:self:@"测试"];
 }
 

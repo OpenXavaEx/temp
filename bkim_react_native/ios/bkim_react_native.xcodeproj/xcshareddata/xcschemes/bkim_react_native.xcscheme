@@ -52,6 +52,16 @@
                ReferencedContainer = "container:bkim_react_native.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3BDC95A91E81E20B00DD0EB1"
+               BuildableName = "BKIM_ReactNative_FrameworkTests.xctest"
+               BlueprintName = "BKIM_ReactNative_FrameworkTests"
+               ReferencedContainer = "container:bkim_react_native.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

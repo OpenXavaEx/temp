@@ -22,6 +22,22 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		3BDC95B21E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDC95B11E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests.m */; };
+		3BDC95B41E81E20B00DD0EB1 /* BKIM_ReactNative_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDC95A41E81E20B00DD0EB1 /* BKIM_ReactNative_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BDC95F31E81E31E00DD0EB1 /* BKIM_RN.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDC95F11E81E31E00DD0EB1 /* BKIM_RN.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BDC95F41E81E31E00DD0EB1 /* BKIM_RN.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDC95F21E81E31E00DD0EB1 /* BKIM_RN.m */; };
+		3BDC95F81E81E76200DD0EB1 /* BKIM_ReactNative_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BDC95A21E81E20A00DD0EB1 /* BKIM_ReactNative_Framework.framework */; };
+		3BDC95FC1E81E89C00DD0EB1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
+		3BDC95FE1E81E89C00DD0EB1 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		3BDC95FF1E81E89C00DD0EB1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
+		3BDC96011E81E89C00DD0EB1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
+		3BDC96031E81E89C00DD0EB1 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
+		3BDC96051E81E89C00DD0EB1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
+		3BDC96071E81E89C00DD0EB1 /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
+		3BDC96091E81E89C00DD0EB1 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		3BDC960A1E81E89C00DD0EB1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
+		3BDC960C1E81E89C00DD0EB1 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
+		3BDC960E1E81E89C00DD0EB1 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
@@ -139,6 +155,20 @@
 			remoteGlobalIDString = 2D2A28131D9B038B00D4039D;
 			remoteInfo = "React-tvOS";
 		};
+		3BDC95AC1E81E20B00DD0EB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3BDC95A11E81E20A00DD0EB1;
+			remoteInfo = BKIM_ReactNative_Framework;
+		};
+		3BDC95AE1E81E20B00DD0EB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = bkim_react_native;
+		};
 		5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
@@ -189,6 +219,14 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = bkim_react_native/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = bkim_react_native/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		3BDC95A21E81E20A00DD0EB1 /* BKIM_ReactNative_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BKIM_ReactNative_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BDC95A41E81E20B00DD0EB1 /* BKIM_ReactNative_Framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKIM_ReactNative_Framework.h; sourceTree = "<group>"; };
+		3BDC95A51E81E20B00DD0EB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BDC95AA1E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BKIM_ReactNative_FrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BDC95B11E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKIM_ReactNative_FrameworkTests.m; sourceTree = "<group>"; };
+		3BDC95B31E81E20B00DD0EB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BDC95F11E81E31E00DD0EB1 /* BKIM_RN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKIM_RN.h; sourceTree = "<group>"; };
+		3BDC95F21E81E31E00DD0EB1 /* BKIM_RN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKIM_RN.m; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -218,6 +256,32 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BDC959E1E81E20A00DD0EB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BDC95FC1E81E89C00DD0EB1 /* libRCTActionSheet.a in Frameworks */,
+				3BDC95FE1E81E89C00DD0EB1 /* libRCTAnimation.a in Frameworks */,
+				3BDC95FF1E81E89C00DD0EB1 /* libRCTGeolocation.a in Frameworks */,
+				3BDC96011E81E89C00DD0EB1 /* libRCTImage.a in Frameworks */,
+				3BDC96031E81E89C00DD0EB1 /* libRCTLinking.a in Frameworks */,
+				3BDC96051E81E89C00DD0EB1 /* libRCTNetwork.a in Frameworks */,
+				3BDC96071E81E89C00DD0EB1 /* libRCTSettings.a in Frameworks */,
+				3BDC96091E81E89C00DD0EB1 /* libRCTText.a in Frameworks */,
+				3BDC960A1E81E89C00DD0EB1 /* libRCTVibration.a in Frameworks */,
+				3BDC960C1E81E89C00DD0EB1 /* libRCTWebSocket.a in Frameworks */,
+				3BDC960E1E81E89C00DD0EB1 /* libReact.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BDC95A71E81E20B00DD0EB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BDC95F81E81E76200DD0EB1 /* BKIM_ReactNative_Framework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +388,26 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3BDC95A31E81E20B00DD0EB1 /* BKIM_ReactNative_Framework */ = {
+			isa = PBXGroup;
+			children = (
+				3BDC95F11E81E31E00DD0EB1 /* BKIM_RN.h */,
+				3BDC95F21E81E31E00DD0EB1 /* BKIM_RN.m */,
+				3BDC95A41E81E20B00DD0EB1 /* BKIM_ReactNative_Framework.h */,
+				3BDC95A51E81E20B00DD0EB1 /* Info.plist */,
+			);
+			path = BKIM_ReactNative_Framework;
+			sourceTree = "<group>";
+		};
+		3BDC95B01E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				3BDC95B11E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests.m */,
+				3BDC95B31E81E20B00DD0EB1 /* Info.plist */,
+			);
+			path = BKIM_ReactNative_FrameworkTests;
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +466,8 @@
 				13B07FAE1A68108700A75B9A /* bkim_react_native */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* bkim_react_nativeTests */,
+				3BDC95A31E81E20B00DD0EB1 /* BKIM_ReactNative_Framework */,
+				3BDC95B01E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				6FFA8995D4D44F458BEDE68A /* Resources */,
 			);
@@ -394,11 +480,25 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* bkim_react_native.app */,
 				00E356EE1AD99517003FC87E /* bkim_react_nativeTests.xctest */,
+				3BDC95A21E81E20A00DD0EB1 /* BKIM_ReactNative_Framework.framework */,
+				3BDC95AA1E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3BDC959F1E81E20A00DD0EB1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BDC95B41E81E20B00DD0EB1 /* BKIM_ReactNative_Framework.h in Headers */,
+				3BDC95F31E81E31E00DD0EB1 /* BKIM_RN.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		00E356ED1AD99517003FC87E /* bkim_react_nativeTests */ = {
@@ -437,6 +537,43 @@
 			productReference = 13B07F961A680F5B00A75B9A /* bkim_react_native.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3BDC95A11E81E20A00DD0EB1 /* BKIM_ReactNative_Framework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BDC95D01E81E20B00DD0EB1 /* Build configuration list for PBXNativeTarget "BKIM_ReactNative_Framework" */;
+			buildPhases = (
+				3BDC959D1E81E20A00DD0EB1 /* Sources */,
+				3BDC959E1E81E20A00DD0EB1 /* Frameworks */,
+				3BDC959F1E81E20A00DD0EB1 /* Headers */,
+				3BDC95A01E81E20A00DD0EB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BKIM_ReactNative_Framework;
+			productName = BKIM_ReactNative_Framework;
+			productReference = 3BDC95A21E81E20A00DD0EB1 /* BKIM_ReactNative_Framework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3BDC95A91E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BDC95D21E81E20B00DD0EB1 /* Build configuration list for PBXNativeTarget "BKIM_ReactNative_FrameworkTests" */;
+			buildPhases = (
+				3BDC95A61E81E20B00DD0EB1 /* Sources */,
+				3BDC95A71E81E20B00DD0EB1 /* Frameworks */,
+				3BDC95A81E81E20B00DD0EB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3BDC95AD1E81E20B00DD0EB1 /* PBXTargetDependency */,
+				3BDC95AF1E81E20B00DD0EB1 /* PBXTargetDependency */,
+			);
+			name = BKIM_ReactNative_FrameworkTests;
+			productName = BKIM_ReactNative_FrameworkTests;
+			productReference = 3BDC95AA1E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -448,6 +585,15 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					3BDC95A11E81E20A00DD0EB1 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					3BDC95A91E81E20B00DD0EB1 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 				};
@@ -513,6 +659,8 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* bkim_react_native */,
 				00E356ED1AD99517003FC87E /* bkim_react_nativeTests */,
+				3BDC95A11E81E20A00DD0EB1 /* BKIM_ReactNative_Framework */,
+				3BDC95A91E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -670,6 +818,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3BDC95A01E81E20A00DD0EB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BDC95A81E81E20B00DD0EB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -707,6 +869,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3BDC959D1E81E20A00DD0EB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BDC95F41E81E31E00DD0EB1 /* BKIM_RN.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BDC95A61E81E20B00DD0EB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BDC95B21E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -714,6 +892,16 @@
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* bkim_react_native */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+		3BDC95AD1E81E20B00DD0EB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3BDC95A11E81E20A00DD0EB1 /* BKIM_ReactNative_Framework */;
+			targetProxy = 3BDC95AC1E81E20B00DD0EB1 /* PBXContainerItemProxy */;
+		};
+		3BDC95AF1E81E20B00DD0EB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* bkim_react_native */;
+			targetProxy = 3BDC95AE1E81E20B00DD0EB1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -798,6 +986,88 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = bkim_react_native;
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		3BDC95B91E81E20B00DD0EB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = BKIM_ReactNative_Framework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bokesoft.BKIM-ReactNative-Framework";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3BDC95BA1E81E20B00DD0EB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = BKIM_ReactNative_Framework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bokesoft.BKIM-ReactNative-Framework";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3BDC95BB1E81E20B00DD0EB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = BKIM_ReactNative_FrameworkTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "example.BKIM-ReactNative-FrameworkTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bkim_react_native.app/bkim_react_native";
+			};
+			name = Debug;
+		};
+		3BDC95BC1E81E20B00DD0EB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = BKIM_ReactNative_FrameworkTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "example.BKIM-ReactNative-FrameworkTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bkim_react_native.app/bkim_react_native";
 			};
 			name = Release;
 		};
@@ -911,6 +1181,24 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BDC95D01E81E20B00DD0EB1 /* Build configuration list for PBXNativeTarget "BKIM_ReactNative_Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BDC95B91E81E20B00DD0EB1 /* Debug */,
+				3BDC95BA1E81E20B00DD0EB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BDC95D21E81E20B00DD0EB1 /* Build configuration list for PBXNativeTarget "BKIM_ReactNative_FrameworkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BDC95BB1E81E20B00DD0EB1 /* Debug */,
+				3BDC95BC1E81E20B00DD0EB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

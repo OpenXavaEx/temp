@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3BE9F6E31E804D0400547C68 /* AppTestFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE9F6E21E804D0400547C68 /* AppTestFramework.framework */; };
+		3BDC95F61E81E33900DD0EB1 /* BKIM_ReactNative_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BDC95F51E81E33900DD0EB1 /* BKIM_ReactNative_Framework.framework */; };
 		AE21C5061E237CB5009C6516 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C5051E237CB5009C6516 /* main.m */; };
 		AE21C5091E237CB5009C6516 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C5081E237CB5009C6516 /* AppDelegate.m */; };
 		AE21C50C1E237CB5009C6516 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C50B1E237CB5009C6516 /* ViewController.m */; };
@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3BE9F6E21E804D0400547C68 /* AppTestFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTestFramework.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/AppTest-fvnimvhjhwpbqeeuoawsptxnmmis/Build/Products/Debug-iphonesimulator/AppTestFramework.framework"; sourceTree = "<group>"; };
+		3BDC95F51E81E33900DD0EB1 /* BKIM_ReactNative_Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BKIM_ReactNative_Framework.framework; path = "../ios/build/Release-iphoneos/BKIM_ReactNative_Framework.framework"; sourceTree = "<group>"; };
 		AE21C5011E237CB5009C6516 /* AppTestDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppTestDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE21C5051E237CB5009C6516 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AE21C5071E237CB5009C6516 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BE9F6E31E804D0400547C68 /* AppTestFramework.framework in Frameworks */,
+				3BDC95F61E81E33900DD0EB1 /* BKIM_ReactNative_Framework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +88,7 @@
 		AE21C5211E237FB3009C6516 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3BE9F6E21E804D0400547C68 /* AppTestFramework.framework */,
+				3BDC95F51E81E33900DD0EB1 /* BKIM_ReactNative_Framework.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
