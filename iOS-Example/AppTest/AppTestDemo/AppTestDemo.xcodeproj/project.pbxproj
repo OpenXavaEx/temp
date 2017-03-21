@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BE9F6E31E804D0400547C68 /* AppTestFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE9F6E21E804D0400547C68 /* AppTestFramework.framework */; };
 		AE21C5061E237CB5009C6516 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C5051E237CB5009C6516 /* main.m */; };
 		AE21C5091E237CB5009C6516 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C5081E237CB5009C6516 /* AppDelegate.m */; };
 		AE21C50C1E237CB5009C6516 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C50B1E237CB5009C6516 /* ViewController.m */; };
 		AE21C50F1E237CB5009C6516 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE21C50D1E237CB5009C6516 /* Main.storyboard */; };
 		AE21C5111E237CB5009C6516 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE21C5101E237CB5009C6516 /* Assets.xcassets */; };
 		AE21C5141E237CB5009C6516 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE21C5121E237CB5009C6516 /* LaunchScreen.storyboard */; };
-		AE9E172D1E238B50006F2B28 /* AppTestFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9E172C1E238B50006F2B28 /* AppTestFramework.framework */; };
 		AE9E172E1E238B5C006F2B28 /* AppTestFramework.framework in Resources */ = {isa = PBXBuildFile; fileRef = AE9E172C1E238B50006F2B28 /* AppTestFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3BE9F6E21E804D0400547C68 /* AppTestFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTestFramework.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/AppTest-fvnimvhjhwpbqeeuoawsptxnmmis/Build/Products/Debug-iphonesimulator/AppTestFramework.framework"; sourceTree = "<group>"; };
 		AE21C5011E237CB5009C6516 /* AppTestDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppTestDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE21C5051E237CB5009C6516 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AE21C5071E237CB5009C6516 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -28,7 +29,7 @@
 		AE21C5101E237CB5009C6516 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE21C5131E237CB5009C6516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE21C5151E237CB5009C6516 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AE9E172C1E238B50006F2B28 /* AppTestFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTestFramework.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AppTest-ecwkwbcqepzbhjcqokxbthlbwqkc/Build/Products/Debug-iphonesimulator/AppTestFramework.framework"; sourceTree = "<group>"; };
+		AE9E172C1E238B50006F2B28 /* AppTestFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTestFramework.framework; path = "/Users/u01/Desktop/Works/Library/Developer/Xcode/DerivedData/AppTest-ecwkwbcqepzbhjcqokxbthlbwqkc/Build/Products/Debug-iphonesimulator/AppTestFramework.framework"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE9E172D1E238B50006F2B28 /* AppTestFramework.framework in Frameworks */,
+				3BE9F6E31E804D0400547C68 /* AppTestFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,7 +88,7 @@
 		AE21C5211E237FB3009C6516 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AE9E172C1E238B50006F2B28 /* AppTestFramework.framework */,
+				3BE9F6E21E804D0400547C68 /* AppTestFramework.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -118,7 +119,7 @@
 		AE21C4F91E237CB5009C6516 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = wangyh;
 				TargetAttributes = {
 					AE21C5001E237CB5009C6516 = {
@@ -210,6 +211,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -257,6 +259,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
