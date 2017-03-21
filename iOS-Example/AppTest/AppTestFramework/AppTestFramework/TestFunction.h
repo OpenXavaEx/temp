@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface TestFunction : NSObject
 
--(void)callFunc;
+-(void)callFunc:(UIViewController *) view ;
 
 @end

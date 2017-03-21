@@ -18,10 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    TestFunction *test = [[TestFunction alloc]init];
-    [test callFunc];
-    
 }
 
 
@@ -30,5 +26,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction) doTest
+{
+    
+    TestFunction *test = [[TestFunction alloc]init];
+    [test callFunc:self];
+}
 
 @end

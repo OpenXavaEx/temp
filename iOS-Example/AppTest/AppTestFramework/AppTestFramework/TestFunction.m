@@ -10,8 +10,23 @@
 
 @implementation TestFunction
 
--(void)callFunc{
+-(void)callFunc: (UIViewController *)view {
     NSLog(@"call function");
+    
+    
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Testing"
+                                 message:@"Test begining ..."
+                                 preferredStyle:UIAlertControllerStyleAlert
+                                 ];
+    UIAlertAction *okAction = [
+                               UIAlertAction actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault handler:nil
+                               ];
+    [alert addAction:okAction];
+    
+    [view presentViewController:alert animated:YES completion:nil];
+
 }
 
 @end

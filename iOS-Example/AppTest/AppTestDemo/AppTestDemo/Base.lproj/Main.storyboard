@@ -27,6 +27,9 @@
                                 <color key="backgroundColor" red="0.4601888589" green="1" blue="0.029640606279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <state key="normal" title="Test it !"/>
+                                <connections>
+                                    <action selector="doTest" destination="BYZ-38-t0r" eventType="touchUpInside" id="vz6-ih-7bZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
