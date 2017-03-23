@@ -26,9 +26,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction) doTest
-{
-    
+- (IBAction) showAbout {
     BKIM_RN *bkim = [[BKIM_RN alloc]init];
     [bkim showAbout:self:@"测试程序💻"];
 }

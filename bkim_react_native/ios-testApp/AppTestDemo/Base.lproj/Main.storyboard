@@ -28,7 +28,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <state key="normal" title="About"/>
                                 <connections>
-                                    <action selector="doTest" destination="BYZ-38-t0r" eventType="touchUpInside" id="vz6-ih-7bZ"/>
+                                    <action selector="showAbout" destination="BYZ-38-t0r" eventType="touchDown" id="4zO-ZT-Otj"/>
                                 </connections>
                             </button>
                         </subviews>
