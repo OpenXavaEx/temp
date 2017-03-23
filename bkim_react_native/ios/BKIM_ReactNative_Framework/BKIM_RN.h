@@ -3,6 +3,6 @@
 
 @interface BKIM_RN : NSObject
 
--(void)callFunc: (UIViewController*)view : (NSString*)title ;
+-(void)showAbout: (UIViewController*)view : (NSString*)productName ;
 
 @end

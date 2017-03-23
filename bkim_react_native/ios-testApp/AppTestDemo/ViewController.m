@@ -29,8 +29,8 @@
 - (IBAction) doTest
 {
     
-    BKIM_RN *test = [[BKIM_RN alloc]init];
-    [test callFunc:self:@"测试"];
+    BKIM_RN *bkim = [[BKIM_RN alloc]init];
+    [bkim showAbout:self:@"测试程序💻"];
 }
 
 @end

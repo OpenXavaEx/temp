@@ -2,13 +2,13 @@
 
 @implementation BKIM_RN
 
--(void)callFunc: (UIViewController*)view : (NSString*)title {
+-(void)showAbout: (UIViewController*)view : (NSString*)productName {
     NSLog(@"call function");
     
     
     UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:title
-                                 message:@"Test begining ..."
+                                 alertControllerWithTitle:@"关于"
+                                 message:[@"BKIM based on React-Native, for " stringByAppendingString:productName]
                                  preferredStyle:UIAlertControllerStyleAlert
                                  ];
     UIAlertAction *okAction = [

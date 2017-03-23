@@ -23,10 +23,10 @@
                         <subviews>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="How-vV-Le2">
                                 <rect key="frame" x="100" y="88" width="175" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.4601888589" green="1" blue="0.029640606279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <state key="normal" title="Test it !"/>
+                                <state key="normal" title="About"/>
                                 <connections>
                                     <action selector="doTest" destination="BYZ-38-t0r" eventType="touchUpInside" id="vz6-ih-7bZ"/>
                                 </connections>
