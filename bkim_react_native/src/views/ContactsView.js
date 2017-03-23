@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Accordion from 'react-native-accordion';
+import Accordion from 'react-native-collapsible/Accordion';
 
 import {colors, contactsCss} from '../styles';
 
