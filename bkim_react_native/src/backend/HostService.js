@@ -16,7 +16,7 @@
 
 var HostService = function(config){
     this.hostServerUrl = config.hostServerUrl;
-    this.clientId = config.clientId;
+    this.peerId = config.peerId;
     this.token = config.token;
 
     this.baseServiceUrl = "http://" + this.hostServerUrl.substring(0, this.hostServerUrl.indexOf("/"));

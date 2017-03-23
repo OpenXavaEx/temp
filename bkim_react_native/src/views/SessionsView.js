@@ -22,11 +22,11 @@ export default class SessionsView extends Component {
         super(props);
 
         this.state = {
-            dataSource: buildDataSource(this.props.sessions)
+            dataSource: buildDataSource(this.props.sessions||[])
         };
     }
     componentWillReceiveProps(nextProps){
-        this.setState({dataSource: buildDataSource(nextProps.sessions)});
+        this.setState({dataSource: buildDataSource(nextProps.sessions||[])});
     }
     renderSession(session) {
         //基于 绝对路径、相对路径、默认值 计算 image 需要显示的图片

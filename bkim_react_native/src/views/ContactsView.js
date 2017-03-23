@@ -96,6 +96,7 @@ export default class ContactsView extends Component {
             sections={this.state.contacts}
             renderHeader={this._renderHeader}
             renderContent={this._renderContent}
+            initiallyActiveSection={0}
           />
         );
     }

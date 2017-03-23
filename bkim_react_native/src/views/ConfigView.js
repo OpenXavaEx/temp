@@ -36,8 +36,8 @@ export default class ConfigView extends Component {
         this.state = {
             imServerUrl: '',
             hostServerUrl: '',
-            clientId: '',
-            toClientId: '',
+            peerId: '',
+            talk2PeerId: '',
             token: '',
             _promptValue: '',
             _promptVisible: false
@@ -58,7 +58,7 @@ export default class ConfigView extends Component {
         });
     }
     _getToClientsDynamically() {
-        var selfId = this.state.clientId;
+        var selfId = this.state.peerId;
         if (! selfId){
             return [""];
         }
@@ -93,18 +93,18 @@ export default class ConfigView extends Component {
             return;
         }
 
-        if (!this.state.imServerUrl || !this.state.hostServerUrl || !this.state.clientId){
+        if (!this.state.imServerUrl || !this.state.hostServerUrl || !this.state.peerId){
             alert("IM 服务器地址 / 主服务器地址 / 当前用户编号 未填写完全");
             return;
         }
-        var token = "dev-mode-test-token:" + this.state.clientId; //测试用的 token
+        var token = "dev-mode-test-token:" + this.state.peerId; //测试用的 token
         this.setState({token: token});
 
         this.props.configCallback("init", this.state);
         this.initialized = true;
     }
     _doTalkTo(){
-        if (!this.state.toClientId){
+        if (!this.state.talk2PeerId){
             alert("对话用户编号 未填写完全");
             return;
         }
@@ -142,8 +142,8 @@ export default class ConfigView extends Component {
                         style={configCss.touchableInput}
                         data={this._buildModalPickerData(TEST_CLIENTS)}
                         initValue="请选择用户编号"
-                        onChange={ (option)=>{this.setState({clientId:option.label, toClientId:""})} }>
-	                    <Text>{this.state.clientId || "请选择用户编号"}</Text>
+                        onChange={ (option)=>{this.setState({peerId:option.label, talk2PeerId:""})} }>
+	                    <Text>{this.state.peerId || "请选择用户编号"}</Text>
                     </ModalPicker>
                     <View style={configCss.buttons}>
                         <Button onPress={ e=>this._doMessagerInit(e) }
@@ -158,8 +158,8 @@ export default class ConfigView extends Component {
 	                    style={configCss.touchableInput}
 	                    data={this._buildModalPickerData(this._getToClientsDynamically())}
 	                    initValue="请选择对话用户编号"
-	                    onChange={ (option)=>{this.setState({toClientId:option.label})} }>
-	                    <Text>{this.state.toClientId || "请选择对话用户编号"}</Text>
+	                    onChange={ (option)=>{this.setState({talk2PeerId:option.label})} }>
+	                    <Text>{this.state.talk2PeerId || "请选择对话用户编号"}</Text>
 	                </ModalPicker>
                     <View style={configCss.buttons}>
                         <Button onPress={ e=>this._doTalkTo(e) }

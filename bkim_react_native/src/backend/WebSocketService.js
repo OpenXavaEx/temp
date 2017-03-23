@@ -79,13 +79,13 @@ var doWebSocketConnect = function(config, fromUser, toUser, fromUserName, toUser
 var WebSocketService = function(config){
     this.config = {
         imServerUrl: config.imServerUrl,
-        clientId: config.clientId,
+        peerId: config.peerId,
         token: config.token
     };
 }
 
 WebSocketService.prototype.initConnect = function(){
-    doWebSocketConnect(this.config, this.config.clientId, this.config.clientId, null, null);
+    doWebSocketConnect(this.config, this.config.peerId, this.config.peerId, null, null);
 }
 
 module.exports = WebSocketService;

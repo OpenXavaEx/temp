@@ -23,7 +23,7 @@ import WebSocketService from './backend/WebSocketService';
 var IM_CONFIGS = {/*
     imServerUrl:    'example.com:7778/boke-messager',
     hostServerUrl:  'example.com:8080/im-service/${service}.json',
-    clientId:       'boke-test-002',
+    peerId:         'boke-test-002',
     token:          'dev-mode-test-token:boke-test-002'
 */};
 
@@ -83,14 +83,14 @@ export default class App extends Component {
             IM_CONFIGS = {
                 imServerUrl: configObject.imServerUrl,
                 hostServerUrl: configObject.hostServerUrl,
-                clientId: configObject.clientId,
+                peerId: configObject.peerId,
                 token: configObject.token,
             };
             doInitIM(this, true);
         }
         if ("talk"==action){
-            var toClientId = configObject.toClientId;
-            alert(`TALK to '${toClientId}': \n`+JSON.stringify(configObject));
+            var talk2PeerId = configObject.talk2PeerId;
+            alert(`TALK to '${talk2PeerId}': \n`+JSON.stringify(configObject));
         }
     }
     _configTabRenderIf() {
