@@ -35,6 +35,9 @@
     if ([segue.identifier isEqualToString: @"segue4LoadBKIM"]||[segue.identifier isEqualToString: @"segue4TalkTo"]){
         BKIM_RNViewController *bkim = (BKIM_RNViewController *)segue.destinationViewController;
         
+        bkim.productName = @"BKIM 测试程序";
+        bkim.isDebug = YES;
+        
         bkim.imServerUrl = [self.ip.text stringByAppendingString:@":7778/boke-messager"];
         bkim.hostServerUrl = [self.ip.text stringByAppendingString:@":8080/im-service/${service}.json"];
         bkim.peerId = self.peerId.text;

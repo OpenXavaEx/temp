@@ -10,6 +10,9 @@
 
 @interface BKIM_RNViewController : UIViewController
 
+@property(nonatomic) NSString *productName;
+@property(nonatomic) BOOL isDebug;
+
 @property(nonatomic) NSString *imServerUrl;
 @property(nonatomic) NSString *hostServerUrl;
 @property(nonatomic) NSString *peerId;

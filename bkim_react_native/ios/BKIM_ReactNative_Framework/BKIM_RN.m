@@ -21,12 +21,17 @@
 
 }
 
--(void)openBKIM : (UIView*)view : (NSString*)productName
+-(void)openBKIM : (UIView*)view : (NSString*)productName : (BOOL) isDebug
                 : (NSString*)imServerUrl : (NSString*)hostServerUrl
                 : (NSString*)peerId : (NSString*)token {
 
     NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
 
+    NSString *debugMode = @"";
+    if (YES == isDebug){
+      debugMode = @"true";
+    }
+                  
     NSDictionary *props = @{
                             @"productName": productName,
                             @"config": @{
@@ -35,7 +40,7 @@
                                 @"peerId": peerId,
                                 @"token": token
                                 },
-                            @"debugMode": @"true"
+                            @"debugMode": debugMode
                             };
   
     RCTRootView *rootView = [[RCTRootView alloc]

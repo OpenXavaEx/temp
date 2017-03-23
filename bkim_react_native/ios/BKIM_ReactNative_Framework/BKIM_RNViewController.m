@@ -18,9 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+  
     BKIM_RN *bkim = [[BKIM_RN alloc]init];
     if (nil == self.talk2PeerId){
-      [bkim openBKIM:self.view:@"BKIM 测试程序" :self.imServerUrl :self.hostServerUrl :self.peerId :self.token];
+      [bkim openBKIM:self.view :self.productName :self.isDebug :self.imServerUrl :self.hostServerUrl :self.peerId :self.token];
     }
 }
 
