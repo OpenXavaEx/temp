@@ -22,6 +22,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		3B9216211E83DDBA00BB391C /* BKIM_RNViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B92161F1E83DDBA00BB391C /* BKIM_RNViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B9216221E83DDBA00BB391C /* BKIM_RNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9216201E83DDBA00BB391C /* BKIM_RNViewController.m */; };
 		3BDC95B21E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDC95B11E81E20B00DD0EB1 /* BKIM_ReactNative_FrameworkTests.m */; };
 		3BDC95B41E81E20B00DD0EB1 /* BKIM_ReactNative_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDC95A41E81E20B00DD0EB1 /* BKIM_ReactNative_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BDC95F31E81E31E00DD0EB1 /* BKIM_RN.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDC95F11E81E31E00DD0EB1 /* BKIM_RN.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -221,6 +223,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = bkim_react_native/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = bkim_react_native/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		3B92161F1E83DDBA00BB391C /* BKIM_RNViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKIM_RNViewController.h; sourceTree = "<group>"; };
+		3B9216201E83DDBA00BB391C /* BKIM_RNViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKIM_RNViewController.m; sourceTree = "<group>"; };
 		3BDC95A21E81E20A00DD0EB1 /* BKIM_ReactNative_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BKIM_ReactNative_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BDC95A41E81E20B00DD0EB1 /* BKIM_ReactNative_Framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKIM_ReactNative_Framework.h; sourceTree = "<group>"; };
 		3BDC95A51E81E20B00DD0EB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -397,6 +401,8 @@
 				3BDC95F21E81E31E00DD0EB1 /* BKIM_RN.m */,
 				3BDC95A41E81E20B00DD0EB1 /* BKIM_ReactNative_Framework.h */,
 				3BDC95A51E81E20B00DD0EB1 /* Info.plist */,
+				3B92161F1E83DDBA00BB391C /* BKIM_RNViewController.h */,
+				3B9216201E83DDBA00BB391C /* BKIM_RNViewController.m */,
 			);
 			path = BKIM_ReactNative_Framework;
 			sourceTree = "<group>";
@@ -496,6 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BDC95B41E81E20B00DD0EB1 /* BKIM_ReactNative_Framework.h in Headers */,
+				3B9216211E83DDBA00BB391C /* BKIM_RNViewController.h in Headers */,
 				3BDC95F31E81E31E00DD0EB1 /* BKIM_RN.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,6 +599,7 @@
 					};
 					3BDC95A11E81E20A00DD0EB1 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					3BDC95A91E81E20B00DD0EB1 = {
@@ -893,6 +901,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BDC95F41E81E31E00DD0EB1 /* BKIM_RN.m in Sources */,
+				3B9216221E83DDBA00BB391C /* BKIM_RNViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1012,9 +1021,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1024,9 +1035,17 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bokesoft.BKIM-ReactNative-Framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1037,10 +1056,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1050,9 +1071,16 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bokesoft.BKIM-ReactNative-Framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1111,6 +1139,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1136,6 +1165,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1161,6 +1191,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1178,6 +1209,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

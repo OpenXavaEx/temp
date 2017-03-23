@@ -62,10 +62,10 @@ var doWebSocketConnect = function(config, fromUser, toUser, fromUserName, toUser
                 }else if ("ReconnectData"==attachment.dataType){
                     //inReconnecting=true;
                     //closeMainPanel();
-                    if(((new Date().getTime())/1000-lastConnectTimestamp/1000)>30){
+                    //if(((new Date().getTime())/1000-lastConnectTimestamp/1000)>30){
                         //doInitMessager();
                         //inReconnecting=false;
-                    }
+                    //}
                 }
             }
         }

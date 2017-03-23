@@ -77,8 +77,8 @@ export default class ContactsView extends Component {
         }
         var content = (
             <ListView
-                dataSource={userDs.cloneWithRows(users)}
-                renderRow={renderUserRow}
+            	dataSource={userDs.cloneWithRows(users)}
+            	renderRow={renderUserRow}
             />
         );
 

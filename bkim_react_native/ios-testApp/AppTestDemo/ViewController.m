@@ -28,7 +28,24 @@
 
 - (IBAction) showAbout {
     BKIM_RN *bkim = [[BKIM_RN alloc]init];
-    [bkim showAbout:self:@"测试程序💻"];
+    [bkim showAbout:self:@"测试程序 💻"];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString: @"segue4LoadBKIM"]||[segue.identifier isEqualToString: @"segue4TalkTo"]){
+        BKIM_RNViewController *bkim = (BKIM_RNViewController *)segue.destinationViewController;
+        
+        bkim.imServerUrl = [self.ip.text stringByAppendingString:@":7778/boke-messager"];
+        bkim.hostServerUrl = [self.ip.text stringByAppendingString:@":8080/im-service/${service}.json"];
+        bkim.peerId = self.peerId.text;
+        bkim.token = [@"dev-mode-test-token:" stringByAppendingString:self.peerId.text];
+        
+        if ([segue.identifier isEqualToString:@"segue4TalkTo"]){
+            bkim.talk2PeerId = self.talkToId.text;
+        }else{
+            bkim.talk2PeerId = nil;
+        }
+    }
 }
 
 @end

@@ -10,6 +10,9 @@
 
 @interface ViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UITextField *ip;
+@property (nonatomic, weak) IBOutlet UITextField *peerId;
+@property (nonatomic, weak) IBOutlet UITextField *talkToId;
 
 @end
 

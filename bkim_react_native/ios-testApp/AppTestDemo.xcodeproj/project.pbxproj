@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B92162B1E84216400BB391C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B92162A1E84216400BB391C /* FontAwesome.ttf */; };
 		3BDC95F61E81E33900DD0EB1 /* BKIM_ReactNative_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BDC95F51E81E33900DD0EB1 /* BKIM_ReactNative_Framework.framework */; };
 		AE21C5061E237CB5009C6516 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C5051E237CB5009C6516 /* main.m */; };
 		AE21C5091E237CB5009C6516 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C5081E237CB5009C6516 /* AppDelegate.m */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B92162A1E84216400BB391C /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		3BDC95F51E81E33900DD0EB1 /* BKIM_ReactNative_Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BKIM_ReactNative_Framework.framework; path = "../ios/build/Release-iphoneos/BKIM_ReactNative_Framework.framework"; sourceTree = "<group>"; };
 		AE21C5011E237CB5009C6516 /* AppTestDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppTestDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE21C5051E237CB5009C6516 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -44,9 +46,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B9216291E84213B00BB391C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3B92162A1E84216400BB391C /* FontAwesome.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		AE21C4F81E237CB5009C6516 = {
 			isa = PBXGroup;
 			children = (
+				3B9216291E84213B00BB391C /* Resources */,
 				AE21C5031E237CB5009C6516 /* AppTestDemo */,
 				AE21C5021E237CB5009C6516 /* Products */,
 				AE21C5211E237FB3009C6516 /* Frameworks */,
@@ -152,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE9E172E1E238B5C006F2B28 /* AppTestFramework.framework in Resources */,
+				3B92162B1E84216400BB391C /* FontAwesome.ttf in Resources */,
 				AE21C5141E237CB5009C6516 /* LaunchScreen.storyboard in Resources */,
 				AE21C5111E237CB5009C6516 /* Assets.xcassets in Resources */,
 				AE21C50F1E237CB5009C6516 /* Main.storyboard in Resources */,

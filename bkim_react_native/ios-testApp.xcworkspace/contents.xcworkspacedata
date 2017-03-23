@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:ios/bkim_react_native.xcodeproj">
+      location = "group:ios-testApp/AppTestDemo.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:ios-testApp/AppTestDemo.xcodeproj">
+      location = "group:ios/bkim_react_native.xcodeproj">
    </FileRef>
 </Workspace>

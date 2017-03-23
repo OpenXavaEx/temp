@@ -18,3 +18,4 @@ FOUNDATION_EXPORT const unsigned char BKIM_ReactNative_FrameworkVersionString[];
 
 
 #import "BKIM_RN.h"
+#import "BKIM_RNViewController.h"

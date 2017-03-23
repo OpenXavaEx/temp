@@ -62,6 +62,10 @@ export default class App extends Component {
             contactsData: [],
             myActiveConnectData: [],
         };
+        
+        if (this.props.debugMode){
+        	alert("Run BKIM with configuration: \n" + JSON.stringify(this.props.config));
+        }
 
         subscribeMessages(this);
     }
