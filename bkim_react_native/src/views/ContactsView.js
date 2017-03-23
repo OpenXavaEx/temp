@@ -25,14 +25,15 @@ export default class ContactsView extends Component {
         super(props);
 
         this.state = {
-            dataSource: buildDataSource(this.props.contacts)
+            contacts: this.props.contacts
         };
     }
     componentWillReceiveProps(nextProps){
         //对于通过 props 属性影响的数据，在 componentWillReceiveProps 方法中 setState 比较合适
-        this.setState({dataSource: buildDataSource(nextProps.contacts)});
+        this.setState({contacts: nextProps.contacts});
     }
-    renderGroupRow(group) {
+    
+    _renderHeader(group) {
         var users = group.users||[];
         var groupType = group.groupType;
 
@@ -44,7 +45,13 @@ export default class ContactsView extends Component {
                 <Text style={contactsCss.groupTags}>{users.length}</Text>
             </View>
         );
+        return header;
+    }
 
+    _renderContent(group) {
+        var users = group.users||[];
+        var groupType = group.groupType;
+        
         var userDs = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
         });
@@ -72,7 +79,6 @@ export default class ContactsView extends Component {
                     <Text style={contactsCss.contactName}>{ user.name }</Text>
                   </View>
                 </View>
-
             );
         }
         var content = (
@@ -81,24 +87,17 @@ export default class ContactsView extends Component {
             	renderRow={renderUserRow}
             />
         );
-
-        return (
-            <Accordion
-                header={header}
-                content={content}
-                easing="easeOutCubic"
-            />
-        );
+        return content;
     }
+
     render() {
         return (
-            <ScrollView>
-                <ListView
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderGroupRow}
-                    enableEmptySections={true}
-                />
-            </ScrollView>
-        )
+          <Accordion
+            sections={this.state.contacts}
+            renderHeader={this._renderHeader}
+            renderContent={this._renderContent}
+          />
+        );
     }
+
 }
