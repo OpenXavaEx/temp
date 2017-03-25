@@ -57,9 +57,9 @@
 		AE21C4F81E237CB5009C6516 = {
 			isa = PBXGroup;
 			children = (
-				3B9216291E84213B00BB391C /* Resources */,
 				AE21C5031E237CB5009C6516 /* AppTestDemo */,
 				AE21C5021E237CB5009C6516 /* Products */,
+				3B9216291E84213B00BB391C /* Resources */,
 				AE21C5211E237FB3009C6516 /* Frameworks */,
 			);
 			sourceTree = "<group>";
