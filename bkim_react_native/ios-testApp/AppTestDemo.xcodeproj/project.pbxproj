@@ -8,19 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		3B92162B1E84216400BB391C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B92162A1E84216400BB391C /* FontAwesome.ttf */; };
-		3BDC95F61E81E33900DD0EB1 /* BKIM_ReactNative_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BDC95F51E81E33900DD0EB1 /* BKIM_ReactNative_Framework.framework */; };
+		A2A11DCD1E8A6A9B0022B6BA /* BKIM_ReactNative_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A11DCC1E8A6A9B0022B6BA /* BKIM_ReactNative_Framework.framework */; };
 		AE21C5061E237CB5009C6516 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C5051E237CB5009C6516 /* main.m */; };
 		AE21C5091E237CB5009C6516 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C5081E237CB5009C6516 /* AppDelegate.m */; };
 		AE21C50C1E237CB5009C6516 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C50B1E237CB5009C6516 /* ViewController.m */; };
 		AE21C50F1E237CB5009C6516 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE21C50D1E237CB5009C6516 /* Main.storyboard */; };
 		AE21C5111E237CB5009C6516 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE21C5101E237CB5009C6516 /* Assets.xcassets */; };
 		AE21C5141E237CB5009C6516 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE21C5121E237CB5009C6516 /* LaunchScreen.storyboard */; };
-		AE9E172E1E238B5C006F2B28 /* AppTestFramework.framework in Resources */ = {isa = PBXBuildFile; fileRef = AE9E172C1E238B50006F2B28 /* AppTestFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3B92162A1E84216400BB391C /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
-		3BDC95F51E81E33900DD0EB1 /* BKIM_ReactNative_Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BKIM_ReactNative_Framework.framework; path = "../ios/build/Release-iphoneos/BKIM_ReactNative_Framework.framework"; sourceTree = "<group>"; };
+		A2A11DCC1E8A6A9B0022B6BA /* BKIM_ReactNative_Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BKIM_ReactNative_Framework.framework; path = "../ios/Debug-iphonesimulator/BKIM_ReactNative_Framework.framework"; sourceTree = "<group>"; };
 		AE21C5011E237CB5009C6516 /* AppTestDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppTestDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE21C5051E237CB5009C6516 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AE21C5071E237CB5009C6516 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -31,7 +30,6 @@
 		AE21C5101E237CB5009C6516 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE21C5131E237CB5009C6516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE21C5151E237CB5009C6516 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AE9E172C1E238B50006F2B28 /* AppTestFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTestFramework.framework; path = "/Users/u01/Desktop/Works/Library/Developer/Xcode/DerivedData/AppTest-ecwkwbcqepzbhjcqokxbthlbwqkc/Build/Products/Debug-iphonesimulator/AppTestFramework.framework"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BDC95F61E81E33900DD0EB1 /* BKIM_ReactNative_Framework.framework in Frameworks */,
+				A2A11DCD1E8A6A9B0022B6BA /* BKIM_ReactNative_Framework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +55,7 @@
 		AE21C4F81E237CB5009C6516 = {
 			isa = PBXGroup;
 			children = (
+				A2A11DCC1E8A6A9B0022B6BA /* BKIM_ReactNative_Framework.framework */,
 				AE21C5031E237CB5009C6516 /* AppTestDemo */,
 				AE21C5021E237CB5009C6516 /* Products */,
 				3B9216291E84213B00BB391C /* Resources */,
@@ -99,7 +98,6 @@
 		AE21C5211E237FB3009C6516 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3BDC95F51E81E33900DD0EB1 /* BKIM_ReactNative_Framework.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -135,7 +133,7 @@
 				TargetAttributes = {
 					AE21C5001E237CB5009C6516 = {
 						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -162,7 +160,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE9E172E1E238B5C006F2B28 /* AppTestFramework.framework in Resources */,
 				3B92162B1E84216400BB391C /* FontAwesome.ttf in Resources */,
 				AE21C5141E237CB5009C6516 /* LaunchScreen.storyboard in Resources */,
 				AE21C5111E237CB5009C6516 /* Assets.xcassets in Resources */,
@@ -299,8 +296,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = "/Users/bokeadmin/project/bkim_react_native/ios/**";
+				HEADER_SEARCH_PATHS = "/Users/bokeadmin/project/bkim_react_native/ios/**";
 				INFOPLIST_FILE = AppTestDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "/Users/bokeadmin/project/bkim_react_native/ios/**";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bokesoft.AppTestDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -310,8 +312,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = "/Users/bokeadmin/project/bkim_react_native/ios/**";
+				HEADER_SEARCH_PATHS = "/Users/bokeadmin/project/bkim_react_native/ios/**";
 				INFOPLIST_FILE = AppTestDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "/Users/bokeadmin/project/bkim_react_native/ios/**";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bokesoft.AppTestDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
