@@ -23,6 +23,7 @@
 		3B2499AE1E8FF84E00AC693D /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B2499AD1E8FF84E00AC693D /* FontAwesome.ttf */; };
 		3B9216211E83DDBA00BB391C /* BKIM_RNViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B92161F1E83DDBA00BB391C /* BKIM_RNViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B9216221E83DDBA00BB391C /* BKIM_RNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9216201E83DDBA00BB391C /* BKIM_RNViewController.m */; };
+		3BC09C411E9009AB00CFB9E7 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B2499AD1E8FF84E00AC693D /* FontAwesome.ttf */; };
 		3BDC95B41E81E20B00DD0EB1 /* BKIM_ReactNative_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDC95A41E81E20B00DD0EB1 /* BKIM_ReactNative_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BDC95F31E81E31E00DD0EB1 /* BKIM_RN.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDC95F11E81E31E00DD0EB1 /* BKIM_RN.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BDC95F41E81E31E00DD0EB1 /* BKIM_RN.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDC95F21E81E31E00DD0EB1 /* BKIM_RN.m */; };
@@ -725,6 +726,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				3BC09C411E9009AB00CFB9E7 /* FontAwesome.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
