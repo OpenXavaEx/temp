@@ -50,7 +50,23 @@ var switch2Tab = function(app, index){
 
 var subscribeMessages = function(app){
     PubSub.subscribe("MyActiveConnectData", function(msg, data){
-        app.setState({myActiveConnectData: data});
+    	//补充当前会话信息中的用户名称/icon
+		var userCodes = [];
+		var sessions = data.sessions;
+		for (var i=0; i<sessions.length; i++){
+			userCodes.push(sessions[i].code);
+		}
+		var hs = new HostService(IM_CONFIGS);
+		hs.fetchUserInfo(userCodes, function(userInfoTable){
+			for (var i=0; i<sessions.length; i++){
+				var user = userInfoTable[sessions[i].code];
+				if (user){
+					sessions[i].userName = user.name;
+					sessions[i].userIcon = user.icon;
+				}
+			}
+	        app.setState({myActiveConnectData: data});
+		});
     });
 }
 

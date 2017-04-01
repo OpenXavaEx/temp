@@ -30,7 +30,7 @@ export default class SessionsView extends Component {
     }
     renderSession(session) {
         //基于 绝对路径、相对路径、默认值 计算 image 需要显示的图片
-        var icon = null;
+        var icon = session.userIcon;
         var imgSrc;
         if (icon){
             imgSrc = {uri: icon};
@@ -49,7 +49,7 @@ export default class SessionsView extends Component {
                 <Image source={imgSrc} style={[sessionsCss.sessionAvatar, decoratedAvatarCss]} />
               </View>
               <View style={sessionsCss.sessionNameContainer}>
-                <Text style={sessionsCss.sessionName}>{ session.code }</Text>
+                <Text style={sessionsCss.sessionName}>{ session.userName || session.code }</Text>
               </View>
             </View>
         );
