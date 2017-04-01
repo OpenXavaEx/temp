@@ -92,12 +92,14 @@ export default class ContactsView extends Component {
 
     render() {
         return (
+        <ScrollView>
           <Accordion
             sections={this.state.contacts}
             renderHeader={this._renderHeader}
             renderContent={this._renderContent}
             initiallyActiveSection={0}
           />
+        </ScrollView>
         );
     }
 
