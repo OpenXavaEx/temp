@@ -1,6 +1,0 @@
-framework module BKIM_ReactNative_Framework {
-  umbrella header "BKIM_ReactNative_Framework.h"
-
-  export *
-  module * { export * }
-}

@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B92162B1E84216400BB391C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B92162A1E84216400BB391C /* FontAwesome.ttf */; };
-		3B994E3F1E8AB5BA004762E7 /* BKIM_ReactNative_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B994E3E1E8AB5BA004762E7 /* BKIM_ReactNative_Framework.framework */; };
-		3B994E411E8AB5D1004762E7 /* BKIM_ReactNative_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B994E3E1E8AB5BA004762E7 /* BKIM_ReactNative_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3B10E0CF1E8AC15B00F5476D /* BKIM_ReactNative_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B10E0CE1E8AC15B00F5476D /* BKIM_ReactNative_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3B2499C61E8FF9D100AC693D /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 3B2499C31E8FF9D100AC693D /* assets */; };
+		3B2499C71E8FF9D100AC693D /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B2499C41E8FF9D100AC693D /* FontAwesome.ttf */; };
+		3B2499C81E8FF9D100AC693D /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B2499C51E8FF9D100AC693D /* main.jsbundle */; };
 		AE21C5061E237CB5009C6516 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C5051E237CB5009C6516 /* main.m */; };
 		AE21C5091E237CB5009C6516 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C5081E237CB5009C6516 /* AppDelegate.m */; };
 		AE21C50C1E237CB5009C6516 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C50B1E237CB5009C6516 /* ViewController.m */; };
@@ -25,7 +26,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3B994E411E8AB5D1004762E7 /* BKIM_ReactNative_Framework.framework in Embed Frameworks */,
+				3B10E0CF1E8AC15B00F5476D /* BKIM_ReactNative_Framework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -33,8 +34,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3B92162A1E84216400BB391C /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
-		3B994E3E1E8AB5BA004762E7 /* BKIM_ReactNative_Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BKIM_ReactNative_Framework.framework; path = "../ios/Exports/Debug/@-iphonesimulator/BKIM_ReactNative_Framework.framework"; sourceTree = "<group>"; };
+		3B10E0CE1E8AC15B00F5476D /* BKIM_ReactNative_Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BKIM_ReactNative_Framework.framework; path = "../ios/Exports/Release/PLAT-iphonesimulator/BKIM_ReactNative_Framework.framework"; sourceTree = "<group>"; };
+		3B2499C31E8FF9D100AC693D /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = "../ios/Exports/Release/PLAT-iphonesimulator/BKIM_ReactNative_Framework.framework/assets"; sourceTree = "<group>"; };
+		3B2499C41E8FF9D100AC693D /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../ios/Exports/Release/PLAT-iphonesimulator/BKIM_ReactNative_Framework.framework/FontAwesome.ttf"; sourceTree = "<group>"; };
+		3B2499C51E8FF9D100AC693D /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = "../ios/Exports/Release/PLAT-iphonesimulator/BKIM_ReactNative_Framework.framework/main.jsbundle"; sourceTree = "<group>"; };
 		AE21C5011E237CB5009C6516 /* AppTestDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppTestDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE21C5051E237CB5009C6516 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AE21C5071E237CB5009C6516 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -52,7 +55,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B994E3F1E8AB5BA004762E7 /* BKIM_ReactNative_Framework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +64,9 @@
 		3B9216291E84213B00BB391C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3B92162A1E84216400BB391C /* FontAwesome.ttf */,
+				3B2499C31E8FF9D100AC693D /* assets */,
+				3B2499C41E8FF9D100AC693D /* FontAwesome.ttf */,
+				3B2499C51E8FF9D100AC693D /* main.jsbundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -112,7 +116,7 @@
 		AE21C5211E237FB3009C6516 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3B994E3E1E8AB5BA004762E7 /* BKIM_ReactNative_Framework.framework */,
+				3B10E0CE1E8AC15B00F5476D /* BKIM_ReactNative_Framework.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -176,8 +180,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B92162B1E84216400BB391C /* FontAwesome.ttf in Resources */,
 				AE21C5141E237CB5009C6516 /* LaunchScreen.storyboard in Resources */,
+				3B2499C71E8FF9D100AC693D /* FontAwesome.ttf in Resources */,
+				3B2499C61E8FF9D100AC693D /* assets in Resources */,
+				3B2499C81E8FF9D100AC693D /* main.jsbundle in Resources */,
 				AE21C5111E237CB5009C6516 /* Assets.xcassets in Resources */,
 				AE21C50F1E237CB5009C6516 /* Main.storyboard in Resources */,
 			);
