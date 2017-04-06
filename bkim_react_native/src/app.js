@@ -9,6 +9,8 @@ import {
 
 import ScrollableTabView, {DefaultTabBar, } from 'react-native-scrollable-tab-view';
 
+import PopupDialog, { DialogTitle } from 'react-native-popup-dialog';
+
 import PubSub from 'pubsub-js';
 
 import styles from './styles';
@@ -69,8 +71,24 @@ var subscribeMessages = function(app){
 		});
     });
     PubSub.subscribe("OpenSession", function(msg, data){
-    	alert(data.userCode);
+    	var userCode = data.userCode;
+    	doOpenSession(app, userCode);
     });
+}
+
+var doOpenSession = function(app, userCode){
+	var hs = new HostService(IM_CONFIGS);
+	hs.fetchUserInfo([userCode], function(userInfoTable){
+		var userName = userCode;
+		var user = userInfoTable[userCode];
+		if (user){
+			userName = user.name
+		}
+		app.setState({sessionData: {
+			userName: userName
+		}});
+		app.popupDialog.show();
+	});
 }
 
 export default class App extends Component {
@@ -80,6 +98,7 @@ export default class App extends Component {
         this.state = {
             contactsData: [],
             myActiveConnectData: [],
+            sessionData: {}
         };
         
         if (this.props.debugMode){
@@ -125,13 +144,23 @@ export default class App extends Component {
 
     render() {
         return (
-            <ScrollableTabView ref='mainTab'
-              style={{marginTop: 10, }}
-              renderTabBar={() => <DefaultTabBar/>} >
-                <ContactsView tabLabel='联系人' contacts={this.state.contactsData}/>
-                <SessionsView tabLabel='会话' sessions={this.state.myActiveConnectData.sessions}/>
-                {this._configTabRenderIf()}
-            </ScrollableTabView>
+        	<View style={{flex:1, flexDirection: 'row'}}>
+	            <ScrollableTabView ref='mainTab'
+	                style={{marginTop: 10, }}
+	                renderTabBar={() => <DefaultTabBar/>} >
+	                <ContactsView tabLabel='联系人' contacts={this.state.contactsData}/>
+	                <SessionsView tabLabel='会话' sessions={this.state.myActiveConnectData.sessions}/>
+	                {this._configTabRenderIf()}
+	            </ScrollableTabView>
+                <PopupDialog
+                    height={1}	/* height=100% */
+                    ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+                    <DialogTitle title={ this.state.sessionData.userName} />
+                    <View>
+		              <Text>Hello</Text>
+		            </View>
+		        </PopupDialog>
+            </View>
         );
     }
 }
