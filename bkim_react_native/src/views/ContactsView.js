@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import {
-    View, ScrollView,
+    View, ScrollView, TouchableHighlight,
     ListView,
     Text,
     Image,
@@ -10,6 +10,8 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Accordion from 'react-native-collapsible/Accordion';
+
+import PubSub from 'pubsub-js';
 
 import {colors, contactsCss} from '../styles';
 
@@ -70,15 +72,20 @@ export default class ContactsView extends Component {
                 decoratedAvatarCss.tintColor = colors.DarkGray;
             }
 
+            var userCode = user.code;
             return (
-                <View style={contactsCss.contact}>
-                  <View style={contactsCss.contactAvatarContainer}>
-                    <Image source={imgSrc} style={[contactsCss.contactAvatar, decoratedAvatarCss]} />
-                  </View>
-                  <View style={contactsCss.contactNameContainer}>
-                    <Text style={contactsCss.contactName}>{ user.name }</Text>
-                  </View>
-                </View>
+            	<TouchableHighlight
+            	    underlayColor={contactsCss.TouchableHighlight.underlayColor}
+            	    onPress={() => PubSub.publish("OpenSession", {userCode: userCode}) }>
+	                <View style={contactsCss.contact}>
+	                  <View style={contactsCss.contactAvatarContainer}>
+	                    <Image source={imgSrc} style={[contactsCss.contactAvatar, decoratedAvatarCss]} />
+	                  </View>
+	                  <View style={contactsCss.contactNameContainer}>
+	                    <Text style={contactsCss.contactName}>{ user.name }</Text>
+	                  </View>
+	                </View>
+                </TouchableHighlight>
             );
         }
         var content = (

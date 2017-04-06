@@ -68,6 +68,9 @@ var subscribeMessages = function(app){
 	        app.setState({myActiveConnectData: data});
 		});
     });
+    PubSub.subscribe("OpenSession", function(msg, data){
+    	alert(data.userCode);
+    });
 }
 
 export default class App extends Component {

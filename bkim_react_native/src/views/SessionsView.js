@@ -2,11 +2,13 @@
 
 import React, { Component } from 'react';
 import {
-    View, ScrollView,
+    View, ScrollView, TouchableHighlight,
     ListView,
     Text,
     Image,
 } from 'react-native';
+
+import PubSub from 'pubsub-js';
 
 import {colors, sessionsCss} from '../styles';
 
@@ -43,15 +45,20 @@ export default class SessionsView extends Component {
             decoratedAvatarCss.tintColor = colors.DarkGray;
         }
 
+        var userCode = session.code;
         return (
-            <View style={sessionsCss.session}>
-              <View style={sessionsCss.sessionAvatarContainer}>
-                <Image source={imgSrc} style={[sessionsCss.sessionAvatar, decoratedAvatarCss]} />
-              </View>
-              <View style={sessionsCss.sessionNameContainer}>
-                <Text style={sessionsCss.sessionName}>{ session.userName || session.code }</Text>
-              </View>
-            </View>
+        	<TouchableHighlight
+        	    underlayColor={sessionsCss.TouchableHighlight.underlayColor}
+        	    onPress={() => PubSub.publish("OpenSession", {userCode: userCode}) }>
+	            <View style={sessionsCss.session}>
+	              <View style={sessionsCss.sessionAvatarContainer}>
+	                <Image source={imgSrc} style={[sessionsCss.sessionAvatar, decoratedAvatarCss]} />
+	              </View>
+	              <View style={sessionsCss.sessionNameContainer}>
+	                <Text style={sessionsCss.sessionName}>{ session.userName || session.code }</Text>
+	              </View>
+	            </View>
+            </TouchableHighlight>
         );
     }
     render() {

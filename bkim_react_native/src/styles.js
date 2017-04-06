@@ -66,6 +66,10 @@ var common = {
     button: {
         //textAlignVertical: 'center',
         //color: colors.DarkBlue,
+    },
+    /** 伪类 - 指定 TouchableHighlight 的 underlayColor */
+    TouchableHighlight: {
+    	underlayColor: colors.Silver,
     }
 }
 
