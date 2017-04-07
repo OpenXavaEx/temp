@@ -76,7 +76,7 @@ export default class ContactsView extends Component {
             return (
             	<TouchableHighlight
             	    underlayColor={contactsCss.TouchableHighlight.underlayColor}
-            	    onPress={() => PubSub.publish("OpenSession", {userCode: userCode}) }>
+            	    onPress={() => PubSub.publish("OpenChatSession", {userCode: userCode}) }>
 	                <View style={contactsCss.contact}>
 	                  <View style={contactsCss.contactAvatarContainer}>
 	                    <Image source={imgSrc} style={[contactsCss.contactAvatar, decoratedAvatarCss]} />

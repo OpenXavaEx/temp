@@ -18,6 +18,7 @@ import styles from './styles';
 import ConfigView from './views/ConfigView';
 import ContactsView from './views/ContactsView';
 import SessionsView from './views/SessionsView';
+import ChatSessionView from './views/ChatSessionView';
 
 import HostService from './backend/HostService';
 import WebSocketService from './backend/WebSocketService';
@@ -70,13 +71,13 @@ var subscribeMessages = function(app){
 	        app.setState({myActiveConnectData: data});
 		});
     });
-    PubSub.subscribe("OpenSession", function(msg, data){
+    PubSub.subscribe("OpenChatSession", function(msg, data){
     	var userCode = data.userCode;
-    	doOpenSession(app, userCode);
+    	doOpenChatSession(app, userCode);
     });
 }
 
-var doOpenSession = function(app, userCode){
+var doOpenChatSession = function(app, userCode){
 	var hs = new HostService(IM_CONFIGS);
 	hs.fetchUserInfo([userCode], function(userInfoTable){
 		var userName = userCode;
@@ -156,9 +157,7 @@ export default class App extends Component {
                     height={1}	/* height=100% */
                     ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
                     <DialogTitle title={ this.state.sessionData.userName} />
-                    <View>
-		              <Text>Hello</Text>
-		            </View>
+                    <ChatSessionView/>
 		        </PopupDialog>
             </View>
         );

@@ -49,7 +49,7 @@ export default class SessionsView extends Component {
         return (
         	<TouchableHighlight
         	    underlayColor={sessionsCss.TouchableHighlight.underlayColor}
-        	    onPress={() => PubSub.publish("OpenSession", {userCode: userCode}) }>
+        	    onPress={() => PubSub.publish("OpenChatSession", {userCode: userCode}) }>
 	            <View style={sessionsCss.session}>
 	              <View style={sessionsCss.sessionAvatarContainer}>
 	                <Image source={imgSrc} style={[sessionsCss.sessionAvatar, decoratedAvatarCss]} />
