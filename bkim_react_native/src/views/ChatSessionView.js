@@ -89,9 +89,6 @@ export default class ChatSessionView extends React.Component {
     render() {
         return (
             <View style={ styles.container }>
-              <View style={styles.topView}>
-                <Text style={{fontSize:20,marginTop:15,color:'#f00'}}>Himi React Native 系列教程</Text>
-              </View>
 
               <ListView
                 ref='_listView'
@@ -102,7 +99,7 @@ export default class ChatSessionView extends React.Component {
               />
 
               <View style={styles.bottomView}>
-                <View style={styles.searchBox}>
+                <View style={styles.chatInputArea}>
                   <TextInput
                       ref='_textInput'
                       onChangeText={(text) =>{this.state.inputContentText=text}}
@@ -118,10 +115,8 @@ export default class ChatSessionView extends React.Component {
                   onPress={this.pressSendBtn.bind(this)}
                 >
                     <View style={styles.sendBtn}>
-                        <Text style={ styles.bottomBtnText }>
-                                  发送
-                        </Text>
-                       </View>
+                        <Text style={ styles.bottomBtnText }>发送</Text>
+                    </View>
                 </TouchableHighlight>
               </View>
             </View>
@@ -133,12 +128,6 @@ var styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#EEEEEE'
-    },
-    topView:{
-        alignItems: 'center',
-        backgroundColor: '#DDDDDD',
-        height: 52,
-        padding:5
     },
     bottomView:{
         flexDirection: 'row',
@@ -156,7 +145,7 @@ var styles = StyleSheet.create({
     },
     bottomBtnText: {
         flex: 1,
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
     },
 
@@ -179,7 +168,7 @@ var styles = StyleSheet.create({
     },
     talkText: {
         flex: 1,
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: 'bold',
     },
     talkViewRight: {
@@ -200,7 +189,7 @@ var styles = StyleSheet.create({
         marginRight:10,
         marginBottom:10
     },
-    searchBox: {
+    chatInputArea: {
         height: 40,
         flexDirection: 'row',
         flex:1,  // 类似于android中的layout_weight,设置为1即自动拉伸填充
@@ -215,7 +204,7 @@ var styles = StyleSheet.create({
     inputText: {
         flex:1,
         backgroundColor: 'transparent',
-        fontSize: 20,
+        fontSize: 14,
         marginLeft:5
     },
 });
