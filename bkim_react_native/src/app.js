@@ -158,6 +158,7 @@ export default class App extends Component {
                     ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
                     <DialogTitle title={ this.state.sessionData.userName} />
                     <ChatSessionView/>
+                    <View style={{height:20}} /* 用于在 Dialog 下方保留空白(因为 PopupDialog height={1} 不够准确？) */></View>
 		        </PopupDialog>
             </View>
         );

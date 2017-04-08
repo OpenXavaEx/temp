@@ -32,6 +32,18 @@ var datas =[{
     talkContent:'无语！',
 }, {
     isMe:false,
+    talkContent:'感觉编不下去对话了呀......感觉编不下去对话了呀......感觉编不下去对话了呀......感觉编不下去对话了呀......',
+}, {
+    isMe:true,
+    talkContent:'无语！',
+}, {
+    isMe:false,
+    talkContent:'感觉编不下去对话了呀......感觉编不下去对话了呀......感觉编不下去对话了呀......感觉编不下去对话了呀......',
+}, {
+    isMe:true,
+    talkContent:'无语！',
+}, {
+    isMe:false,
     talkContent:'自说自话，好难！随便补充点字数吧，嗯 就酱紫 :) ',
 }, {
     isMe:true,
@@ -207,4 +219,7 @@ var styles = StyleSheet.create({
         fontSize: 14,
         marginLeft:5
     },
+    buttomSpacer: {
+    	height: 40,
+    }
 });
