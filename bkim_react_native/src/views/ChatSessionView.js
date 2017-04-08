@@ -56,17 +56,42 @@ var datas =[{
 export default class ChatSessionView extends React.Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             inputContentText:'',
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             }),
+            chatInfo: this.props.chatInfo,
         };
+        
         this.listHeight = 0;
         this.footerY = 0;
     }
 
-    componentDidMount() {
+    componentWillReceiveProps(nextProps){
+        var chatInfo = nextProps.chatInfo;
+        if (chatInfo.talkFromAvatar){
+        	this.myAvatar = {uri: chatInfo.talkFromAvatar};
+        }else{
+        	this.myAvatar = require("../resources/default-avatar/icon-myself.png");
+        }
+        if (chatInfo.talkToAvatar){
+        	this.talkToAvatar = {uri: chatInfo.talkToAvatar};
+        }else{
+        	this.talkToAvatar = require("../resources/default-avatar/icon-user.png");
+        }
+
+        datas.push({
+			isMe:false,
+			talkContent: '来自 '+new Date()+' 的消息'
+    	});
+        datas.push({
+			isMe:true,
+			talkContent: '你好，来自 '+new Date()+' 的消息'
+    	});
+        
+
         this.setState({
             dataSource: this.state.dataSource.cloneWithRows(datas)
         });
@@ -76,16 +101,16 @@ export default class ChatSessionView extends React.Component {
           return (
               <View style={{flexDirection:'row',alignItems: 'center'}}>
                 <Image
-                  source={eData.isMe==true? null:require("../resources/default-avatar/icon-user.png")}
+                  source={eData.isMe==true? null: this.talkToAvatar}
                   style={eData.isMe==true?null:styles.talkImg}
                 />
-                  <View style={eData.isMe==true?styles.talkViewRight:styles.talkView}>
+                <View style={eData.isMe==true?styles.talkViewRight:styles.talkView}>
                     <Text style={ styles.talkText }>
                               {eData.talkContent}
                     </Text>
-                  </View>
+                </View>
                 <Image
-                    source={eData.isMe==true? require("../resources/default-avatar/icon-myself.png") :null}
+                    source={eData.isMe==true? this.myAvatar :null}
                     style={eData.isMe==true?styles.talkImgRight:null}
                 />
               </View>
@@ -93,6 +118,16 @@ export default class ChatSessionView extends React.Component {
       }
 
     myRenderFooter(e){
+    	//让新的数据永远展示在ListView的底部
+    	//通过ListView的renderFooter 绘制一个0高度的view，通过获取其Y位置，其实就是获取到了ListView内容高度底部的Y位置
+        return <View onLayout={(e)=> {
+            this.footerY= e.nativeEvent.layout.y;
+
+            if (this.listHeight && this.footerY &&this.footerY>this.listHeight) {
+                var scrollDistance = this.listHeight - this.footerY;
+                this.refs._listView.scrollTo({y:-scrollDistance});
+            }
+        }}/>
     }
 
     pressSendBtn(){
