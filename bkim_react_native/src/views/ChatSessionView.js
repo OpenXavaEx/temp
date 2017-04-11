@@ -15,43 +15,9 @@ import {
     Alert,
 } from 'react-native';
 
-var datas =[{
-    isMe:false,
-    talkContent:'最近在学习React Native哦！',
-},{
-    isMe:true,
-    talkContent:'听说是个跨平台开发原生App的开源引擎',
-}, {
-    isMe:false,
-    talkContent:'嗯啊，很不错，可以尝试下吧。过了这段时间继续研究UE去了。唉～技术出身，就是放不下技术呀～',
-}, {
-    isMe:false,
-    talkContent:'感觉编不下去对话了呀......感觉编不下去对话了呀......感觉编不下去对话了呀......感觉编不下去对话了呀......',
-}, {
-    isMe:true,
-    talkContent:'无语！',
-}, {
-    isMe:false,
-    talkContent:'感觉编不下去对话了呀......感觉编不下去对话了呀......感觉编不下去对话了呀......感觉编不下去对话了呀......',
-}, {
-    isMe:true,
-    talkContent:'无语！',
-}, {
-    isMe:false,
-    talkContent:'感觉编不下去对话了呀......感觉编不下去对话了呀......感觉编不下去对话了呀......感觉编不下去对话了呀......',
-}, {
-    isMe:true,
-    talkContent:'无语！',
-}, {
-    isMe:false,
-    talkContent:'自说自话，好难！随便补充点字数吧，嗯 就酱紫 :) ',
-}, {
-    isMe:true,
-    talkContent:'感觉编不下去对话了呀......感觉编不下去对话了呀..',
-}, {
-    isMe:false,
-    talkContent:'GG,思密达编不下去了！',
-}];
+import PubSub from 'pubsub-js';
+
+import WebSocketService from '../backend/WebSocketService';
 
 export default class ChatSessionView extends React.Component {
     constructor(props) {
@@ -62,60 +28,106 @@ export default class ChatSessionView extends React.Component {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             }),
-            chatInfo: this.props.chatInfo,
         };
         
         this.listHeight = 0;
         this.footerY = 0;
+        
+        this.chatInfo = {};
+        this.messages = [];
+        
+        this.websocket = null;
+        
+        var self = this;
+        PubSub.subscribe("RecentHistory", function(msg, data){
+        	self.messages = data.messages;
+        	self.setState({
+                dataSource: self.state.dataSource.cloneWithRows(data.messages)
+            });
+        });
+
     }
 
     componentWillReceiveProps(nextProps){
         var chatInfo = nextProps.chatInfo;
-        if (chatInfo.talkFromAvatar){
-        	this.myAvatar = {uri: chatInfo.talkFromAvatar};
-        }else{
-        	this.myAvatar = require("../resources/default-avatar/icon-myself.png");
-        }
-        if (chatInfo.talkToAvatar){
-        	this.talkToAvatar = {uri: chatInfo.talkToAvatar};
-        }else{
-        	this.talkToAvatar = require("../resources/default-avatar/icon-user.png");
-        }
-
-        datas.push({
-			isMe:false,
-			talkContent: '来自 '+new Date()+' 的消息'
-    	});
-        datas.push({
-			isMe:true,
-			talkContent: '你好，来自 '+new Date()+' 的消息'
-    	});
         
+        if (!chatInfo || !chatInfo.talkFrom || !chatInfo.talkTo){
+        	this.chatInfo = {};
+        	return;    //避免在 IM 没有初始化情况下无效的 WebSocket 连接
+        }
+        
+        this.chatInfo = chatInfo;
+        
+        if (!this.websocket ||
+        		!this._prevSessionStartTime || this._prevSessionStartTime!=chatInfo.sessionStartTime){
+        	//开始新的聊天时, 重新执行 WebSocket 连接
+        	this.websocket = new WebSocketService(nextProps.config);
+        	this.websocket.connectTo(chatInfo.talkTo, chatInfo.talkFromName, chatInfo.talkToName);
+            this._prevSessionStartTime = chatInfo.sessionStartTime;
 
-        this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(datas)
-        });
+            //新聊天 - 处理用户头像
+            if (chatInfo.talkFromAvatar){
+            	this.myAvatar = {uri: chatInfo.talkFromAvatar};
+            }else{
+            	this.myAvatar = require("../resources/default-avatar/icon-myself.png");
+            }
+            if (chatInfo.talkToAvatar){
+            	this.talkToAvatar = {uri: chatInfo.talkToAvatar};
+            }else{
+            	this.talkToAvatar = require("../resources/default-avatar/icon-user.png");
+            }
+        }
     }
 
-    renderEveryData(eData) {
-          return (
-              <View style={{flexDirection:'row',alignItems: 'center'}}>
+    renderEveryData(msg) {
+        var msgType = msg.type;
+        if ("BLANK"==msgType){
+        	return null;    //不处理 BLANK 类型的数据
+        }
+        
+        var isMe = (msg.sender == this.chatInfo.talkFrom);
+        
+        var chatContent = null;
+        if ("TEXT"==msgType){
+        	chatContent =
+        		<Text style={ styles.talkText }>
+                    {msg.data}
+                </Text>;
+        }else if ("IMAGE"==msgType){
+        	var url = this.websocket.buildImageUrl(msg, "icon");
+        	var fileName = msg.data.fileName;
+        	chatContent =
+        		<TouchableHighlight>
+        	        <Image source={{uri: url}} style={styles.talkUploadedImage}/>
+        	    </TouchableHighlight>
+        }else if ("FILE"==msgType){
+        	chatContent =
+        		<Text style={ styles.talkText }>
+                    {"未知: " + msgType}
+                </Text>;
+        }else {
+        	chatContent =
+        		<Text style={ styles.talkText }>
+                    {"未知: " + msgType}
+                </Text>;
+        }
+        
+    	return (
+            <View style={{flexDirection:'row',alignItems: 'center'}}>
                 <Image
-                  source={eData.isMe==true? null: this.talkToAvatar}
-                  style={eData.isMe==true?null:styles.talkImg}
+                  source={isMe==true? null: this.talkToAvatar}
+                  style={isMe==true?null:styles.talkImg}
                 />
-                <View style={eData.isMe==true?styles.talkViewRight:styles.talkView}>
-                    <Text style={ styles.talkText }>
-                              {eData.talkContent}
-                    </Text>
+                <View style={isMe==true?styles.talkViewRight:styles.talkView}>
+                    {chatContent}
                 </View>
                 <Image
-                    source={eData.isMe==true? this.myAvatar :null}
-                    style={eData.isMe==true?styles.talkImgRight:null}
+                    source={isMe==true? this.myAvatar :null}
+                    style={isMe==true?styles.talkImgRight:null}
                 />
-              </View>
-          );
-      }
+            </View>
+        );
+    }
 
     myRenderFooter(e){
     	//让新的数据永远展示在ListView的底部
@@ -131,6 +143,28 @@ export default class ChatSessionView extends React.Component {
     }
 
     pressSendBtn(){
+        if(this.state.inputContentText.trim().length <= 0){
+            return;
+        }
+        
+        var txtMsg = {
+        	type: "TEXT",
+        	data: this.state.inputContentText,
+			sender: this.chatInfo.talkFrom,
+			senderName: this.chatInfo.talkFromName,
+			receiver: this.chatInfo.talkTo,
+			receiverName: this.chatInfo.talkToName,
+			timestamp: (new Date()).getTime()
+        }
+        
+        
+        this.messages.push(txtMsg);
+
+        this.refs._textInput.clear();
+        this.setState({
+            inputContentText:'',
+            dataSource: this.state.dataSource.cloneWithRows(this.messages)
+        })
     }
 
     render() {
@@ -143,6 +177,7 @@ export default class ChatSessionView extends React.Component {
                 dataSource={this.state.dataSource}
                 renderRow={this.renderEveryData.bind(this)}
                 renderFooter={this.myRenderFooter.bind(this)}
+                enableEmptySections={true}
               />
 
               <View style={styles.bottomView}>
@@ -217,6 +252,11 @@ var styles = StyleSheet.create({
         flex: 1,
         fontSize: 14,
         fontWeight: 'bold',
+    },
+    talkUploadedImage: {
+        width: 200,
+        height: 200,
+        resizeMode: "contain"
     },
     talkViewRight: {
         flex: 1,

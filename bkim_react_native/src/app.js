@@ -86,15 +86,17 @@ var doOpenChatSession = function(app, userCode){
 		var my = userInfoTable[IM_CONFIGS.peerId];
 		var myName = (my)?my.name:IM_CONFIGS.peerId;
 		var myIcon = (my)?my.icon:null;
-		app.setState({chatInfo: {
-			talkFrom: IM_CONFIGS.peerId,
-			talkFromName: myName,
-			talkFromAvatar: my.icon,
-			talkTo: userCode,
-			talkToName: userName,
-			talkToAvatar: userIcon,
-			token: IM_CONFIGS.token
-		}});
+		app.setState({
+			chatInfo: {
+				talkFrom: IM_CONFIGS.peerId,
+				talkFromName: myName,
+				talkFromAvatar: my.icon,
+				talkTo: userCode,
+				talkToName: userName,
+				talkToAvatar: userIcon,
+				sessionStartTime: (new Date()).getTime()
+			}
+		});
 		app.popupDialog.show();
 	});
 }
@@ -163,8 +165,8 @@ export default class App extends Component {
                 <PopupDialog
                     height={1}	/* height=100% */
                     ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
-                    <DialogTitle title={ this.state.chatInfo.userName} />
-                    <ChatSessionView chatInfo={this.state.chatInfo}/>
+                    <DialogTitle title={ this.state.chatInfo.talkToName} />
+                    <ChatSessionView chatInfo={this.state.chatInfo} config={IM_CONFIGS}/>
                     <View style={{height:20}} /* 用于在 Dialog 下方保留空白(因为 PopupDialog height={1} 不够准确？) */></View>
 		        </PopupDialog>
             </View>
