@@ -172,9 +172,16 @@ var sessionsCss = {
 };
 CSS.mix(common, sessionsCss);
 
+/** Styles for ChatSessionView */
+var chatSessionCss = {
+		
+}
+CSS.mix(common, chatSessionCss);
+
 module.exports = {
     colors,
 	configCss,
     contactsCss,
-    sessionsCss
+    sessionsCss,
+    chatSessionCss
 }

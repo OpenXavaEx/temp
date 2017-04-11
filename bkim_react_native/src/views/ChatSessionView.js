@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
+    Button,
     TouchableHighlight,
     Image,
     PixelRatio,
@@ -13,11 +14,14 @@ import {
     StyleSheet,
     TextInput,
     Alert,
+    Dimensions,
 } from 'react-native';
 
 import PubSub from 'pubsub-js';
 
 import WebSocketService from '../backend/WebSocketService';
+
+import {colors, chatSessionCss} from '../styles';
 
 export default class ChatSessionView extends React.Component {
     constructor(props) {
@@ -45,7 +49,22 @@ export default class ChatSessionView extends React.Component {
                 dataSource: self.state.dataSource.cloneWithRows(data.messages)
             });
         });
-
+        PubSub.subscribe("OnMessage", function(msg, receivedMessage){
+        	self.messages.push(receivedMessage);
+        	self.setState({
+                dataSource: self.state.dataSource.cloneWithRows(self.messages)
+            });
+        });
+        PubSub.subscribe("ChatSessionView/File", function(msg, file){
+        	var fileName = file.name;
+        	var fileUrl = file.url;
+        	alert(fileUrl);
+        });
+        PubSub.subscribe("ChatSessionView/Image", function(msg, file){
+        	var fileName = file.name;
+        	var fileUrl = file.url;
+        	alert(fileUrl);
+        });
     }
 
     componentWillReceiveProps(nextProps){
@@ -89,44 +108,55 @@ export default class ChatSessionView extends React.Component {
         
         var chatContent = null;
         if ("TEXT"==msgType){
-        	chatContent =
-        		<Text style={ styles.talkText }>
+        	chatContent = (
+        		<Text style={ isMe==true?styles.talkTextRight:styles.talkText }>
                     {msg.data}
-                </Text>;
+                </Text>
+            );
         }else if ("IMAGE"==msgType){
-        	var url = this.websocket.buildImageUrl(msg, "icon");
+        	var url = msg.data.fileUrl;
+        	var previewUrl = this.websocket.buildImageUrl(msg, "icon");
         	var fileName = msg.data.fileName;
-        	chatContent =
-        		<TouchableHighlight>
-        	        <Image source={{uri: url}} style={styles.talkUploadedImage}/>
-        	    </TouchableHighlight>
+        	chatContent = <ChatImageViewer isMe={isMe} fileName={fileName} source={{uri: previewUrl}} />
         }else if ("FILE"==msgType){
-        	chatContent =
-        		<Text style={ styles.talkText }>
-                    {"未知: " + msgType}
-                </Text>;
+        	var url = msg.data.fileUrl;
+        	var fileName = msg.data.fileName;
+        	chatContent = (
+        		<TouchableHighlight
+        		    underlayColor={chatSessionCss.TouchableHighlight.underlayColor}
+        		    onPress={() => PubSub.publish("ChatSessionView/File", {name: fileName, url: url})}
+        		>
+	        		<Text style={ isMe==true?styles.talkTextRight:styles.talkText }>
+	        			{"[文件] "}<Text style={styles.talkFile}>{fileName}</Text>
+			        </Text>
+		        </TouchableHighlight>
+		    );
         }else {
-        	chatContent =
-        		<Text style={ styles.talkText }>
-                    {"未知: " + msgType}
-                </Text>;
+        	chatContent = (
+        		<Text style={ isMe==true?styles.talkTextRight:styles.talkText }>
+        			{"未知类型: " + msgType}
+		        </Text>
+		    );
         }
         
-    	return (
-            <View style={{flexDirection:'row',alignItems: 'center'}}>
+        var sWidth = Dimensions.get('window').width;
+  		return (
+  			<View style={isMe==true?styles.everyRowRight:styles.everyRow}>
                 <Image
                   source={isMe==true? null: this.talkToAvatar}
-                  style={isMe==true?null:styles.talkImg}
+                  style={isMe==true? null: styles.talkImg}
                 />
-                <View style={isMe==true?styles.talkViewRight:styles.talkView}>
-                    {chatContent}
+                <View style={{width:sWidth - 20}}>
+    				<View style={isMe==true?styles.talkViewRight:styles.talkView}>
+                        {chatContent}
+    				</View>
                 </View>
                 <Image
                     source={isMe==true? this.myAvatar :null}
-                    style={isMe==true?styles.talkImgRight:null}
+                    style={isMe==true? styles.talkImgRight :null}
                 />
-            </View>
-        );
+  			</View>
+  		);
     }
 
     myRenderFooter(e){
@@ -146,6 +176,9 @@ export default class ChatSessionView extends React.Component {
         if(this.state.inputContentText.trim().length <= 0){
             return;
         }
+        if (!this.websocket){
+        	return;
+        }
         
         var txtMsg = {
         	type: "TEXT",
@@ -157,7 +190,7 @@ export default class ChatSessionView extends React.Component {
 			timestamp: (new Date()).getTime()
         }
         
-        
+        this.websocket.sendMessage(txtMsg);
         this.messages.push(txtMsg);
 
         this.refs._textInput.clear();
@@ -191,19 +224,62 @@ export default class ChatSessionView extends React.Component {
                   />
                 </View>
 
-                <TouchableHighlight
-                  underlayColor={'#AAAAAA'}
-                  activeOpacity={0.5}
-                  onPress={this.pressSendBtn.bind(this)}
-                >
-                    <View style={styles.sendBtn}>
-                        <Text style={ styles.bottomBtnText }>发送</Text>
-                    </View>
-                </TouchableHighlight>
-              </View>
+                <Button onPress={ this.pressSendBtn.bind(this) }
+                  title="发送"
+                  style={chatSessionCss.button}
+                />
+                </View>
             </View>
         );
     }
+}
+
+/**
+ * 支持自动根据图片大小调整显示区域的图片显示组件
+ */
+class ChatImageViewer extends React.Component {
+	constructor(props) {
+        super(props);
+        
+        this.state = {
+        	width: 0,
+        	height: 0
+        };
+    }
+	componentDidMount() {
+		Image.getSize(this.props.source.uri, (width, height) => {
+			this.setState({width, height}); 
+		});
+	}
+	render() {
+		if (this.state.width && this.state.height){
+			return (
+				<TouchableHighlight
+				    underlayColor={chatSessionCss.TouchableHighlight.underlayColor}
+				    onPress={() => PubSub.publish("ChatSessionView/Image", {
+				    	name: this.props.fileName, url: this.props.source.uri
+				    })}
+				>
+					<Image
+			            source={this.props.source}
+			            style={{
+			            	height: this.state.height,
+			            	width: this.state.width,
+			            	resizeMode: Image.resizeMode.contain
+			            }}
+			        />
+				</TouchableHighlight>
+			);
+		}else{
+			return (
+				<Text style={ this.props.isMe==true?styles.talkTextRight:styles.talkText }>
+					<Text style={ styles.talkMessageInfo }>
+		        		{"正在加载: "} <Text style={{fontStyle: 'italic'}}>{this.props.fileName}</Text> {" ..."}
+		        	</Text>
+				</Text>
+            );
+		}
+	}
 }
 
 var styles = StyleSheet.create({
@@ -220,54 +296,62 @@ var styles = StyleSheet.create({
     },
     sendBtn: {
         alignItems: 'center',
-        backgroundColor: '#FF88C2',
+        backgroundColor: colors.Blue,
         padding: 10,
         borderRadius:5,
         height:40,
     },
     bottomBtnText: {
         flex: 1,
+        color: colors.White,
         fontSize: 16,
         fontWeight: 'bold',
     },
 
-    talkView: {
-        flex: 1,
+    everyRow:{
+        flexDirection:'row',
+        alignItems: 'center'
+    },
+    everyRowRight:{
+        flexDirection:'row',
         alignItems: 'center',
+        justifyContent:'flex-end'
+    },
+    talkView: {
         backgroundColor: 'white',
-        flexDirection: 'row',
         padding: 10,
         borderRadius:5,
         marginLeft:5,
         marginRight:55,
-        marginBottom:10
+        marginBottom:10,
+        alignSelf:'flex-start',
+    },
+    talkViewRight: {
+        backgroundColor: '#cbeaf9',
+        padding: 10,
+        borderRadius:5,
+        marginLeft:55,
+        marginRight:5,
+        marginBottom:10,
+        alignSelf:'flex-end',
+    },
+    talkText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    talkTextRight: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        alignSelf:'flex-end',
+    },
+    talkFile: {
+    	color: colors.Blue,
+    	textDecorationLine: 'underline',
     },
     talkImg: {
         height: 40,
         width: 40,
         marginLeft:10,
-        marginBottom:10
-    },
-    talkText: {
-        flex: 1,
-        fontSize: 14,
-        fontWeight: 'bold',
-    },
-    talkUploadedImage: {
-        width: 200,
-        height: 200,
-        resizeMode: "contain"
-    },
-    talkViewRight: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: '#90EE90',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        padding: 10,
-        borderRadius:5,
-        marginLeft:55,
-        marginRight:5,
         marginBottom:10
     },
     talkImgRight: {
@@ -276,6 +360,12 @@ var styles = StyleSheet.create({
         marginRight:10,
         marginBottom:10
     },
+    talkMessageInfo: {
+        flex: 1,
+        fontSize: 10,
+        fontWeight: 'normal',
+    },
+
     chatInputArea: {
         height: 40,
         flexDirection: 'row',

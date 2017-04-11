@@ -63,7 +63,7 @@ var doWebSocketConnect = function(config, fromUser, toUser, fromUserName, toUser
         var msg = JSON.parse(evt.data);
         var type = msg.type;
         if ("BLANK"!=type){		//BLANK 类型的数据不处理
-            //localDataClient.pushLocalMessageHistory(msg.sender, msg.sender, msg);
+        	PubSub.publish("OnMessage", msg);
         }
 
         //处理 attachments
@@ -71,16 +71,18 @@ var doWebSocketConnect = function(config, fromUser, toUser, fromUserName, toUser
         if (attachments && Array.isArray(attachments)){
             for(var i=0; i<attachments.length; i++){
                 var attachment = attachments[i];
-                if (attachment && "MyActiveConnectData"==attachment.dataType){
+                if (!attachment){
+                	//Do nothing
+                }else if ("MyActiveConnectData"==attachment.dataType){
                     //处理 MyActiveConnectData 类型
-                    PubSub.publish(attachment.dataType, attachment);
+                    PubSub.publish("MyActiveConnectData", attachment);
                 }else if ("RecentHistory"==attachment.dataType){
                 	if (localVars.ws_Sender && localVars.ws_Sender!=localVars.ws_Receiver){
                         //处理最近的历史信息(针对不是 self connection 的情况)
-                    	PubSub.publish(attachment.dataType, attachment);
+                    	PubSub.publish("RecentHistory", attachment);
                 	}
                 }else if ("ReconnectData"==attachment.dataType){
-                	PubSub.publish(attachment.dataType, attachment);
+                	PubSub.publish("ReconnectData", attachment);
                 }
             }
         }
@@ -110,7 +112,8 @@ var doSendMessage = function(config, message){
 	}else{
 		for (var i=0; i<cached.length; i++){
 			var msg = cached[i];
-			webSocketClient.send(msg);
+			var msgText = JSON.stringify(msg);
+			webSocketClient.send(msgText);
 		}
 		cached.splice(0, cached.length);    //发送完成后清除消息缓存
 	}
