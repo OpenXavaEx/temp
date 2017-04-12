@@ -20,20 +20,6 @@
                ReferencedContainer = "container:bkim_react_native.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "bkim_react_nativeTests.xctest"
-               BlueprintName = "bkim_react_nativeTests"
-               ReferencedContainer = "container:bkim_react_native.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -42,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "bkim_react_nativeTests.xctest"
-               BlueprintName = "bkim_react_nativeTests"
-               ReferencedContainer = "container:bkim_react_native.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3BDC95A91E81E20B00DD0EB1"
-               BuildableName = "BKIM_ReactNative_FrameworkTests.xctest"
-               BlueprintName = "BKIM_ReactNative_FrameworkTests"
-               ReferencedContainer = "container:bkim_react_native.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

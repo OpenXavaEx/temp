@@ -6,7 +6,7 @@
 	<dict>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<data>
-		tyAM6hk30ybNsc4Gt4VkZYIz8FE=
+		o9AmJA51o9fu47mk2ZuDZxHm3NE=
 		</data>
 		<key>FontAwesome.ttf</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		emXQocXQ+HfMi5Nf3zI3+oWytG8=
+		tb5qLFqI70Zla0NzN9z+yoVB0Ds=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -52,17 +52,21 @@
 		<data>
 		h6iaRr2yULlW7VdhK/SZVFO7UBM=
 		</data>
+		<key>assets/src/resources/default-avatar/icon-myself.png</key>
+		<data>
+		Azz2o/uITYd3ANUbWDEEqjKd3qE=
+		</data>
 		<key>assets/src/resources/default-avatar/icon-user.png</key>
 		<data>
 		QuJP08bAjlrlY8coz/qwEMLkkqI=
 		</data>
 		<key>main.jsbundle</key>
 		<data>
-		PdwjEkyOPeaVsVdRYlHNIG8hmYU=
+		UqdMzmwGRoLkoBhGUlzvdXjJBdI=
 		</data>
 		<key>main.jsbundle.meta</key>
 		<data>
-		umXQoM9Exfq4YSqAwe4DMh22nqM=
+		yPZR+CE7+JmQaUEaWEayGqySxu0=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -71,11 +75,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			tyAM6hk30ybNsc4Gt4VkZYIz8FE=
+			o9AmJA51o9fu47mk2ZuDZxHm3NE=
 			</data>
 			<key>hash2</key>
 			<data>
-			0F8pBIHV3UMTamWFT9yGFG3BrltDBSuEFf4mPWK2UTk=
+			tBUy6e1XkaStYSpKOjTWBx/vvT6g/QficebZKu8HpJE=
 			</data>
 		</dict>
 		<key>FontAwesome.ttf</key>
@@ -188,6 +192,17 @@
 			yxFa1GbJewG0cdCqfhCkFthTjRQEENRWSwgGsiXcyFQ=
 			</data>
 		</dict>
+		<key>assets/src/resources/default-avatar/icon-myself.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Azz2o/uITYd3ANUbWDEEqjKd3qE=
+			</data>
+			<key>hash2</key>
+			<data>
+			DNL3xqh4JrLkdVdvXD+AgW/I39aC0qPoCHN44HIi3jA=
+			</data>
+		</dict>
 		<key>assets/src/resources/default-avatar/icon-user.png</key>
 		<dict>
 			<key>hash</key>
@@ -203,22 +218,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			PdwjEkyOPeaVsVdRYlHNIG8hmYU=
+			UqdMzmwGRoLkoBhGUlzvdXjJBdI=
 			</data>
 			<key>hash2</key>
 			<data>
-			GqXfLtMDAIeE/NLS44Rr7hMXJHJGRlVvw9jA6//Bbtw=
+			Tp6VZswt/L4LDSUwoowN7+s9jkkzQBoky7/g2xSFhs8=
 			</data>
 		</dict>
 		<key>main.jsbundle.meta</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			umXQoM9Exfq4YSqAwe4DMh22nqM=
+			yPZR+CE7+JmQaUEaWEayGqySxu0=
 			</data>
 			<key>hash2</key>
 			<data>
-			mjtWJ7x1wIn2sfaBuvQpTK5YifG9+nEYzQIu6IAQgyo=
+			gHP8oN1LHC/f6Y3EeuwM8Y111/79q6vShdObeW8pVf0=
 			</data>
 		</dict>
 	</dict>
