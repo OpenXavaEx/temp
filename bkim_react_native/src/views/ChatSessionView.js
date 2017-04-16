@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import PubSub from 'pubsub-js';
 
@@ -245,7 +246,8 @@ export default class ChatSessionView extends React.Component {
                   title="发送"
                   style={chatSessionCss.button}
                 />
-                </View>
+                <KeyboardSpacer/>
+              </View>
             </View>
         );
     }
