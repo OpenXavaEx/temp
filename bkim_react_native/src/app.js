@@ -102,12 +102,6 @@ var doOpenChatSession = function(app, userCode){
 	});
 }
 
-var dimWindow = Dimensions.get('window');
-var dimScreen = Dimensions.get('screen');
-alert(JSON.stringify({
-	window: dimWindow, screen: dimScreen
-}));
-
 export default class App extends Component {
     constructor(props) {
         super(props);
@@ -115,7 +109,8 @@ export default class App extends Component {
         this.state = {
             contactsData: [],
             myActiveConnectData: [],
-            chatInfo: {}
+            chatInfo: {},
+            navigatorOffSet: 0
         };
         
         if (this.props.debugMode){
@@ -158,10 +153,16 @@ export default class App extends Component {
             return null;
         }
     }
+    _measureNavigatorOffSet(evtLayout) {
+    	var {x, y, width, height} = evtLayout.nativeEvent.layout;
+    	var offset = Dimensions.get('window').height-height;
+    	this.setState({navigatorOffSet: offset});
+    }
 
     render() {
         return (
-        	<View style={{flex:1, flexDirection: 'row'}}>
+        	<View style={{flex:1, flexDirection: 'row'}}
+        	    onLayout={(event) => {this._measureNavigatorOffSet(event)}}>
 	            <ScrollableTabView ref='mainTab'
 	                style={{marginTop: 10, }}
 	                renderTabBar={() => <DefaultTabBar/>} >
@@ -170,12 +171,11 @@ export default class App extends Component {
 	                {this._configTabRenderIf()}
 	            </ScrollableTabView>
                 <PopupDialog
-                    height={1}	/* height=100% */
+                    height={1} /* 1=100% */
                     ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
                     <DialogTitle title={ this.state.chatInfo.talkToName} />
                     <ChatSessionView chatInfo={this.state.chatInfo} config={IM_CONFIGS}/>
-                    <View style={{height: dimScreen.height-dimWindow.height}}
-                        /* 用于在 Dialog 下方保留空白(因为 PopupDialog height={1} 不够准确？) */></View>
+    		        <View style={{height: this.state.navigatorOffSet}}></View>
 		        </PopupDialog>
             </View>
         );

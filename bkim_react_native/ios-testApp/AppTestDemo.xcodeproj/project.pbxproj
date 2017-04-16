@@ -10,6 +10,7 @@
 		3B6ABEBA1EA3C293007A77A3 /* BKIM_ReactNative_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6ABEB91EA3C293007A77A3 /* BKIM_ReactNative_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B6ABEBC1EA3C2DC007A77A3 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 3B6ABEBB1EA3C2DC007A77A3 /* assets */; };
 		3B6ABEBF1EA3C2F8007A77A3 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B6ABEBE1EA3C2F8007A77A3 /* main.jsbundle */; };
+		3B6ABECC1EA3E0DD007A77A3 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B6ABEBD1EA3C2EB007A77A3 /* FontAwesome.ttf */; };
 		AE21C5061E237CB5009C6516 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C5051E237CB5009C6516 /* main.m */; };
 		AE21C5091E237CB5009C6516 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C5081E237CB5009C6516 /* AppDelegate.m */; };
 		AE21C50C1E237CB5009C6516 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE21C50B1E237CB5009C6516 /* ViewController.m */; };
@@ -179,6 +180,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B6ABECC1EA3E0DD007A77A3 /* FontAwesome.ttf in Resources */,
 				AE21C5141E237CB5009C6516 /* LaunchScreen.storyboard in Resources */,
 				3B6ABEBC1EA3C2DC007A77A3 /* assets in Resources */,
 				3B6ABEBF1EA3C2F8007A77A3 /* main.jsbundle in Resources */,
