@@ -221,7 +221,7 @@ export default class ChatSessionView extends React.Component {
 	              </TouchableHighlight>
 		      </View>
 
-              <ListView
+              <ListView style={ styles.messageList }
                 ref='_listView'
                 onLayout={(e)=>{this.listHeight = e.nativeEvent.layout.height;}}
                 dataSource={this.state.dataSource}
@@ -330,6 +330,11 @@ var styles = StyleSheet.create({
         borderRadius: 5,
         //borderWidth: 1,
         //borderColor: colors.DimGray,
+    },
+    
+    messageList: {
+        paddingTop: 9,
+        paddingBottom: 9,
     },
     
     bottomView:{
