@@ -5,6 +5,7 @@ import {
     Text,
     View,
     ScrollView,
+    Dimensions
 } from 'react-native';
 
 import ScrollableTabView, {DefaultTabBar, } from 'react-native-scrollable-tab-view';
@@ -101,6 +102,12 @@ var doOpenChatSession = function(app, userCode){
 	});
 }
 
+var dimWindow = Dimensions.get('window');
+var dimScreen = Dimensions.get('screen');
+alert(JSON.stringify({
+	window: dimWindow, screen: dimScreen
+}));
+
 export default class App extends Component {
     constructor(props) {
         super(props);
@@ -167,7 +174,8 @@ export default class App extends Component {
                     ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
                     <DialogTitle title={ this.state.chatInfo.talkToName} />
                     <ChatSessionView chatInfo={this.state.chatInfo} config={IM_CONFIGS}/>
-                    <View style={{height:20}} /* 用于在 Dialog 下方保留空白(因为 PopupDialog height={1} 不够准确？) */></View>
+                    <View style={{height: dimScreen.height-dimWindow.height}}
+                        /* 用于在 Dialog 下方保留空白(因为 PopupDialog height={1} 不够准确？) */></View>
 		        </PopupDialog>
             </View>
         );
