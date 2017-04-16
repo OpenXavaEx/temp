@@ -11,6 +11,7 @@ import {
     Image,
     PixelRatio,
     ListView,
+    KeyboardAvoidingView,
     StyleSheet,
     TextInput,
     Alert,
@@ -18,7 +19,6 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import PubSub from 'pubsub-js';
 
@@ -231,7 +231,7 @@ export default class ChatSessionView extends React.Component {
                 enableEmptySections={true}
               />
 
-              <View style={styles.bottomView}>
+              <KeyboardAvoidingView behavior="height" style={styles.bottomView}>
                 <View style={styles.chatInputArea}>
                   <TextInput
                       ref='_textInput'
@@ -246,8 +246,7 @@ export default class ChatSessionView extends React.Component {
                   title="发送"
                   style={chatSessionCss.button}
                 />
-                <KeyboardSpacer/>
-              </View>
+              </KeyboardAvoidingView>
             </View>
         );
     }
