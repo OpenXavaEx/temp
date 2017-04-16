@@ -10,7 +10,7 @@ import {
 
 import ScrollableTabView, {DefaultTabBar, } from 'react-native-scrollable-tab-view';
 
-import PopupDialog, { DialogTitle } from 'react-native-popup-dialog';
+import PopupDialog from 'react-native-popup-dialog';
 
 import PubSub from 'pubsub-js';
 
@@ -173,8 +173,7 @@ export default class App extends Component {
                 <PopupDialog
                     height={1} /* 1=100% */
                     ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
-                    <DialogTitle title={ this.state.chatInfo.talkToName} />
-                    <ChatSessionView chatInfo={this.state.chatInfo} config={IM_CONFIGS}/>
+                    <ChatSessionView chatInfo={this.state.chatInfo} config={IM_CONFIGS} popupDialog={this.popupDialog}/>
     		        <View style={{height: this.state.navigatorOffSet}}></View>
 		        </PopupDialog>
             </View>

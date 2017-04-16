@@ -17,6 +17,8 @@ import {
     Dimensions,
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import PubSub from 'pubsub-js';
 
 import WebSocketService from '../backend/WebSocketService';
@@ -203,6 +205,21 @@ export default class ChatSessionView extends React.Component {
     render() {
         return (
             <View style={ styles.container }>
+	          <View style={styles.title}>
+	              <TouchableHighlight
+  		              underlayColor={chatSessionCss.TouchableHighlight.underlayColor}
+	                  onPress={()=>{this.props.popupDialog.dismiss()}}
+	              >
+	                  <Icon name='close' style={styles.titleActionIcon}/>
+	              </TouchableHighlight>
+		          <Text style={ styles.titleText }>{this.chatInfo.talkToName}</Text>
+	              <TouchableHighlight
+		              underlayColor={chatSessionCss.TouchableHighlight.underlayColor}
+                      onPress={()=>{alert("Menus")}}
+	              >
+	                  <Icon name='bars' style={styles.titleActionIcon}/>
+	              </TouchableHighlight>
+		      </View>
 
               <ListView
                 ref='_listView'
@@ -287,6 +304,34 @@ var styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#EEEEEE'
     },
+    
+    title: {
+        padding: 9,
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
+        borderBottomWidth: 0.5,
+        backgroundColor: '#F9F9FB',
+        borderColor: '#DAD9DC',
+        flexDirection:'row',
+    },
+    titleText: {
+        color: '#7F7D89',
+        fontSize: 16,
+        textAlign: "center",
+        flex: 1,
+    },
+    titleActionIcon: {
+        color: colors.Gray,
+        fontSize: 16,
+        paddingTop: 3,
+        paddingBottom: 3,
+        paddingLeft: 9,
+        paddingRight: 9,
+        borderRadius: 5,
+        //borderWidth: 1,
+        //borderColor: colors.DimGray,
+    },
+    
     bottomView:{
         flexDirection: 'row',
         alignItems: 'center',
