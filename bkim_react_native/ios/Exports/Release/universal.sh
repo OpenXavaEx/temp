@@ -3,9 +3,8 @@ if [ -z $BASH ]; then
     echo "This shell script MUST run under bash."
     exit -1
 fi
-_script="$(readlink -f "${BASH_SOURCE[0]}")"
-_script_dir="$(dirname "$_script")"
-echo "Directory of $_script : $_script_dir"
+_script_dir=$(cd "$(dirname "$0")"; pwd)
+echo "Directory of $0 : $_script_dir"
 
 set -o nounset
 set -o errexit
@@ -20,7 +19,12 @@ then
 fi
 mkdir -p "${INSTALL_DIR}"
 
-cp -Rv "${SIMULATOR_DIR}/" "${INSTALL_DIR}/"
-cp -Rv "${DEVICE_DIR}/" "${INSTALL_DIR}/"
+set -x
+
+cp -R "${SIMULATOR_DIR}/" "${INSTALL_DIR}/"
+lipo -detailed_info "${INSTALL_DIR}/BKIM_ReactNative_Framework"
+cp -R "${DEVICE_DIR}/" "${INSTALL_DIR}/"
+lipo -detailed_info "${INSTALL_DIR}/BKIM_ReactNative_Framework"
 
 lipo -create "${DEVICE_DIR}/BKIM_ReactNative_Framework" "${SIMULATOR_DIR}/BKIM_ReactNative_Framework" -output "${INSTALL_DIR}/BKIM_ReactNative_Framework"
+lipo -detailed_info "${INSTALL_DIR}/BKIM_ReactNative_Framework"
