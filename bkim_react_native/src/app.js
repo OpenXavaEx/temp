@@ -156,7 +156,9 @@ export default class App extends Component {
     _measureNavigatorOffSet(evtLayout) {
     	var {x, y, width, height} = evtLayout.nativeEvent.layout;
     	var offset = Dimensions.get('window').height-height;
-    	this.setState({navigatorOffSet: offset});
+    	if (offset != this.state.navigatorOffSet){
+        	this.setState({navigatorOffSet: offset});
+    	}
     }
 
     render() {
