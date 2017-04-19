@@ -11,7 +11,6 @@ import {
     Image,
     PixelRatio,
     ListView,
-    KeyboardAvoidingView,
     StyleSheet,
     TextInput,
     Alert,
@@ -19,6 +18,7 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import PubSub from 'pubsub-js';
 
@@ -231,22 +231,25 @@ export default class ChatSessionView extends React.Component {
                 enableEmptySections={true}
               />
 
-              <KeyboardAvoidingView behavior="height" style={styles.bottomView}>
-                <View style={styles.chatInputArea}>
-                  <TextInput
+              <View /*这个 View 必须存在，否则在使用 KeyboardAwareScrollView 后，上面 ListView 内容比较少的情况下无法撑满屏幕 */>
+                <KeyboardAwareScrollView contentContainerStyle={styles.bottomView}>
+                  <View style={styles.chatInputArea}>
+                    <TextInput
                       ref='_textInput'
                       onChangeText={(text) =>{this.state.inputContentText=text}}
                       placeholder=' 请输入对话内容'
                       returnKeyType='done'
                       style={styles.inputText}
-                  />
-                </View>
+                    />
+                  </View>
 
-                <Button onPress={ this.pressSendBtn.bind(this) }
-                  title="发送"
-                  style={chatSessionCss.button}
-                />
-              </KeyboardAvoidingView>
+                  <Button onPress={ this.pressSendBtn.bind(this) }
+                    title="发送"
+                    style={chatSessionCss.button}
+                  />
+                </KeyboardAwareScrollView>
+              </View>
+
             </View>
         );
     }
@@ -303,7 +306,7 @@ class ChatImageViewer extends React.Component {
 var styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#EEEEEE'
+        backgroundColor: '#EEEEEE',
     },
     
     title: {
