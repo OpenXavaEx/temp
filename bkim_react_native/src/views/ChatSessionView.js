@@ -19,6 +19,7 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import ImagePicker from 'react-native-image-picker'
 
 import PubSub from 'pubsub-js';
 
@@ -202,6 +203,31 @@ export default class ChatSessionView extends React.Component {
             dataSource: this.state.dataSource.cloneWithRows(this.messages)
         })
     }
+    
+    pressCamera(){
+    	var options = {
+			title: '选择图片',
+			takePhotoButtonTitle: '拍照',
+			chooseFromLibraryButtonTitle: '从相册选择',
+			cancelButtonTitle: '取消',
+			maxWidth: 500,
+		    maxHeight: 500,
+			storageOptions: {
+			    skipBackup: true,
+			    path: 'bkim-images'
+			}
+		};
+    	ImagePicker.showImagePicker(options, (response) => {
+			if (response.didCancel) {
+			    // User cancel, do nothing
+			} else if (response.error) {
+			    alert("发送图片失败: "+response.error);
+			} else {
+			    let source = { uri: response.uri };
+			    alert(response.uri);
+			}
+		});
+    }
 
     render() {
         return (
@@ -233,6 +259,9 @@ export default class ChatSessionView extends React.Component {
 
               <View /*这个 View 必须存在，否则在使用 KeyboardAwareScrollView 后，上面 ListView 内容比较少的情况下无法撑满屏幕 */>
                 <KeyboardAwareScrollView contentContainerStyle={styles.bottomView}>
+                
+                  <Icon name="camera" style={styles.chatImageHandler} onPress={this.pressCamera.bind(this)}/>
+                
                   <View style={styles.chatInputArea}>
                     <TextInput
                       ref='_textInput'
@@ -420,6 +449,15 @@ var styles = StyleSheet.create({
         fontWeight: 'normal',
     },
 
+    chatImageHandler: {
+    	width: 32,
+    	height: 32,
+    	fontSize: 16,
+    	padding: 8,
+        borderRadius: 16,  // 设置圆角边
+        borderWidth: 1,
+        borderColor: colors.White,
+    },
     chatInputArea: {
         height: 40,
         flexDirection: 'row',
