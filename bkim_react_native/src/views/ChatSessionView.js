@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import {
     View,
+    ScrollView,
     Text,
     Button,
     TouchableHighlight,
@@ -19,6 +20,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ImagePicker from 'react-native-image-picker';
 import Modal from 'react-native-root-modal';
+import InputScrollView from 'react-native-inputscrollview';
 
 import PubSub from 'pubsub-js';
 
@@ -286,7 +288,7 @@ export default class ChatSessionView extends React.Component {
     
     render() {
         return (
-            <View style={ styles.container }>
+            <InputScrollView contentContainerStyle={ styles.container }>
 	        
               <View style={styles.title}>
 	              <TouchableHighlight
@@ -340,7 +342,7 @@ export default class ChatSessionView extends React.Component {
                   ref={(uploadingProgress) => { this.uploadingProgress = uploadingProgress; }}
               />
 
-            </View>
+            </InputScrollView>
         );
     }
 }

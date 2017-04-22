@@ -13,6 +13,7 @@
     "react-native-collapsible": "^0.8.0",
     "react-native-fetch-blob": "^0.10.4",
     "react-native-image-picker": "^0.24.1",
+    "react-native-inputscrollview": "^2.0.1",
     "react-native-modal-picker": "0.0.16",
     "react-native-popup-dialog": "^0.7.22",
     "react-native-prompt": "^1.0.0",
