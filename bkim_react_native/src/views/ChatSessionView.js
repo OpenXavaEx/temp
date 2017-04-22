@@ -30,12 +30,15 @@ import IMService from '../backend/IMService';
 
 import {colors, chatSessionCss} from '../styles';
 
+const INPUT_HEIGHT_MIN=40;
+
 export default class ChatSessionView extends React.Component {
     constructor(props) {
         super(props);
         
         this.state = {
-            inputContentText:'',
+            inputContentText: '',
+            inputContentHeight: INPUT_HEIGHT_MIN,
             showUploadingProgress: false,
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
@@ -197,7 +200,8 @@ export default class ChatSessionView extends React.Component {
         if ("TEXT"==type){
             this.refs._textInput.clear();
             this.setState({
-                inputContentText:'',
+                inputContentText: '',
+                inputContentHeight: INPUT_HEIGHT_MIN,
                 dataSource: this.state.dataSource.cloneWithRows(this.messages)
             })
         }else{
@@ -261,6 +265,23 @@ export default class ChatSessionView extends React.Component {
 		});
     }
 
+    _onTextChange(event) {
+    	//REF: http://stackoverflow.com/questions/31475187/making-a-multiline-expanding-textinput-with-react-native/40447354#40447354
+    	
+        const { contentSize, text } = event.nativeEvent;
+        
+        var height = contentSize.height;
+        var maxHeight = INPUT_HEIGHT_MIN + 3*styles.inputText.fontSize;    //最多扩展4行
+
+        if (height<INPUT_HEIGHT_MIN) height = INPUT_HEIGHT_MIN;
+        if (height>maxHeight) height = maxHeight;
+
+        this.setState({
+            inputContentText: text,
+            inputContentHeight: height
+        }); 
+    }
+    
     render() {
         return (
             <View style={ styles.container }>
@@ -291,17 +312,22 @@ export default class ChatSessionView extends React.Component {
               />
 
               <View /*这个 View 必须存在，否则在使用 KeyboardAwareScrollView 后，上面 ListView 内容比较少的情况下无法撑满屏幕 */>
-                <KeyboardAwareScrollView contentContainerStyle={styles.bottomView}>
+                <KeyboardAwareScrollView
+                  contentContainerStyle={[
+                	  {height: this.state.inputContentHeight+styles.bottomView.padding*2},
+                	  styles.bottomView
+                  ]}>
                 
                   <Icon name="camera" style={styles.chatImageHandler} onPress={this.pressCamera.bind(this)}/>
                 
-                  <View style={styles.chatInputArea}>
+                  <View style={[{height: this.state.inputContentHeight}, styles.chatInputArea]}>
                     <TextInput
-                      ref='_textInput'
-                      onChangeText={(text) =>{this.state.inputContentText=text}}
-                      placeholder=' 请输入对话内容'
-                      returnKeyType='done'
-                      style={styles.inputText}
+                        ref='_textInput'
+                        onChange={this._onTextChange.bind(this)}
+                        placeholder=' 请输入对话内容'
+                        returnKeyType='done'
+                        multiline={true}
+                        style={[{height: this.state.inputContentHeight}, styles.inputText]}
                     />
                   </View>
 
@@ -435,7 +461,6 @@ var styles = StyleSheet.create({
         height: 200,
         width: 260,
     },
-    
     uploadingTitle: {
     	position: 'relative',
     	top: -146,
@@ -447,7 +472,6 @@ var styles = StyleSheet.create({
         borderRadius: 3,
         alignSelf: 'flex-start',
     },
-    
     uploadingImage: {
         height: 150,
         width: 240,
@@ -493,7 +517,6 @@ var styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#DDDDDD',
-        height: 52,
         padding:5
     },
     sendBtn: {
@@ -578,7 +601,6 @@ var styles = StyleSheet.create({
         borderColor: colors.White,
     },
     chatInputArea: {
-        height: 40,
         flexDirection: 'row',
         flex:1,  // 类似于android中的layout_weight,设置为1即自动拉伸填充
         borderRadius: 5,  // 设置圆角边
