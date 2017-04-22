@@ -5,7 +5,8 @@ import {
     Text,
     View,
     ScrollView,
-    Dimensions
+    Dimensions,
+    BackAndroid
 } from 'react-native';
 
 import ScrollableTabView, {DefaultTabBar, } from 'react-native-scrollable-tab-view';
@@ -14,7 +15,7 @@ import PopupDialog from 'react-native-popup-dialog';
 
 import PubSub from 'pubsub-js';
 
-import styles from './styles';
+import DialogStacks from './utils/DialogStacks';
 
 import ConfigView from './views/ConfigView';
 import ContactsView from './views/ContactsView';
@@ -98,7 +99,11 @@ var doOpenChatSession = function(app, userCode){
 				sessionStartTime: (new Date()).getTime()
 			}
 		});
-		app.popupDialog.show();
+		app.chattingDialog.show();
+		DialogStacks.push(app.chattingDialog, function(dialog, data){
+			dialog.dismiss();
+			return true;
+		});
 	});
 }
 
@@ -116,7 +121,6 @@ export default class App extends Component {
         if (this.props.debugMode){
         	alert("Run BKIM with configuration: \n" + JSON.stringify(this.props.config));
         }
-
         subscribeMessages(this);
     }
     componentDidMount() {
@@ -126,7 +130,11 @@ export default class App extends Component {
             IM_CONFIGS = this.props.config;
             doInitIM(this);
         }
+	    BackAndroid.addEventListener('hardwareBackPress', DialogStacks.hardwareBackEventHandler);
     }
+	componentWillUnmount() {
+	    BackAndroid.removeEventListener('hardwareBackPress', DialogStacks.hardwareBackEventHandler);
+	}
     _configCallback(action, configObject) {
         //响应 ConfigView 的 “初始化 IM” 和 “打开用户会话” 两个 callback
         if ("init"==action){
@@ -165,6 +173,7 @@ export default class App extends Component {
         return (
         	<View style={{flex:1, flexDirection: 'row'}}
         	    onLayout={(event) => {this._measureNavigatorOffSet(event)}}>
+        	
 	            <ScrollableTabView ref='mainTab'
 	                style={{marginTop: 10, }}
 	                renderTabBar={() => <DefaultTabBar/>} >
@@ -172,12 +181,19 @@ export default class App extends Component {
 	                <SessionsView tabLabel='会话' sessions={this.state.myActiveConnectData.sessions}/>
 	                {this._configTabRenderIf()}
 	            </ScrollableTabView>
+	            
                 <PopupDialog
-                    height={1} /* 1=100% */
-                    ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
-                    <ChatSessionView chatInfo={this.state.chatInfo} config={IM_CONFIGS} popupDialog={this.popupDialog}/>
+                    ref={(chattingDialog) => { this.chattingDialog = chattingDialog; }}
+                    height={1} /* 1=100% */ 
+                    dismissOnHardwareBackPress={false} /* 通过 DialogStacks 管理各个 dialog 对 back 键的响应 */
+                >
+                    <ChatSessionView
+                      chatInfo={this.state.chatInfo}
+                      config={IM_CONFIGS}
+                    />
     		        <View style={{height: this.state.navigatorOffSet}}></View>
 		        </PopupDialog>
+
             </View>
         );
     }

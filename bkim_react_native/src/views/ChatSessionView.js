@@ -13,15 +13,17 @@ import {
     ListView,
     StyleSheet,
     TextInput,
-    Alert,
     Dimensions,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import ImagePicker from 'react-native-image-picker'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import ImagePicker from 'react-native-image-picker';
+import Modal from 'react-native-root-modal';
 
 import PubSub from 'pubsub-js';
+
+import DialogStacks from '../utils/DialogStacks';
 
 import WebSocketService from '../backend/WebSocketService';
 
@@ -33,6 +35,7 @@ export default class ChatSessionView extends React.Component {
         
         this.state = {
             inputContentText:'',
+            showUploadingProgress: false,
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             }),
@@ -205,6 +208,10 @@ export default class ChatSessionView extends React.Component {
     }
     
     pressCamera(){
+		if (!this.websocket){
+        	return;
+        }
+
     	var options = {
 			title: '选择图片',
 			takePhotoButtonTitle: '拍照',
@@ -224,7 +231,28 @@ export default class ChatSessionView extends React.Component {
 			    alert("发送图片失败: "+response.error);
 			} else {
 			    let source = { uri: response.uri };
-			    alert(response.uri);
+				this.uploadingProgress.show(source);
+				return;
+				
+	            var imgMsg = {
+		        	type: "IMAGE",
+		        	data: {
+		        		
+		        	},
+					sender: this.chatInfo.talkFrom,
+					senderName: this.chatInfo.talkFromName,
+					receiver: this.chatInfo.talkTo,
+					receiverName: this.chatInfo.talkToName,
+					timestamp: (new Date()).getTime()
+		        }
+		        
+		        this.websocket.sendMessage(imgMsg);
+		        this.messages.push(imgMsg);
+		
+		        this.setState({
+		            dataSource: this.state.dataSource.cloneWithRows(this.messages)
+		        })
+
 			}
 		});
     }
@@ -232,10 +260,11 @@ export default class ChatSessionView extends React.Component {
     render() {
         return (
             <View style={ styles.container }>
-	          <View style={styles.title}>
+	        
+              <View style={styles.title}>
 	              <TouchableHighlight
   		              underlayColor={chatSessionCss.TouchableHighlight.underlayColor}
-	                  onPress={()=>{this.props.popupDialog.dismiss()}}
+	                  onPress={()=>{DialogStacks.closeTop()}}
 	              >
 	                  <Icon name='close' style={styles.titleActionIcon}/>
 	              </TouchableHighlight>
@@ -278,10 +307,64 @@ export default class ChatSessionView extends React.Component {
                   />
                 </KeyboardAwareScrollView>
               </View>
+              
+              <UploadProgress
+                  ref={(uploadingProgress) => { this.uploadingProgress = uploadingProgress; }}
+              />
 
             </View>
         );
     }
+}
+
+/**
+ * 上传进度对话框
+ */
+class UploadProgress extends React.Component {
+	constructor(props) {
+        super(props);
+        
+        this.state = {
+        	visible: false,
+        	progress: 0,
+        	image: null
+        };
+    }
+	
+	_renderImage(){
+		if (this.state.image){
+			return (
+			    <Image
+		            source={this.state.image}
+		            style={styles.uploadingImage}
+		        />
+			);
+		}else{
+			return null;
+		}
+	}
+	
+	render(){
+		return (
+			<Modal visible={this.state.visible} >
+			    <View style={styles.uploadingDialog}>
+			        {this._renderImage()}
+    		        <Text style={styles.uploadingTitle}>正在上传 {this.state.progress}% ...</Text>
+			    </View>
+			</Modal>
+		);
+	}
+	
+	show(imageSource){
+		this.setState({visible: true, image: imageSource});
+		DialogStacks.push(this, function(dialog, data){
+			dialog.setState({visible: false});
+		});
+	}
+	
+	setProgress(progress){
+		this.setState({progress: progress});
+	}
 }
 
 /**
@@ -336,6 +419,34 @@ var styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#EEEEEE',
+    },
+    
+    uploadingDialog: {
+    	flexDirection:'column',
+        alignItems: 'center',
+        height: 200,
+        width: 260,
+    },
+    
+    uploadingTitle: {
+    	position: 'relative',
+    	top: -146,
+    	left: 14,	//4+(260-240)/2
+    	color: colors.DimGray,
+        fontSize: 16,
+        backgroundColor: 'rgba(211,211,211,0.8)',	//211=D3, colors.LightGray with alpha=0.8
+        padding: 3,
+        borderRadius: 3,
+        alignSelf: 'flex-start',
+    },
+    
+    uploadingImage: {
+        height: 150,
+        width: 240,
+        padding: 5,
+        borderWidth: 2,
+        borderColor: colors.DimGray,
+        borderRadius: 10,
     },
     
     title: {
