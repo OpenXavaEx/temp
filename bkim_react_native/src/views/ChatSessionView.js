@@ -11,13 +11,13 @@ import {
     Image,
     PixelRatio,
     ListView,
+    KeyboardAvoidingView,
     StyleSheet,
     TextInput,
     Dimensions,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-picker';
 import Modal from 'react-native-root-modal';
 
@@ -29,8 +29,6 @@ import WebSocketService from '../backend/WebSocketService';
 import IMService from '../backend/IMService';
 
 import {colors, chatSessionCss} from '../styles';
-
-const INPUT_HEIGHT_MIN=40;
 
 export default class ChatSessionView extends React.Component {
     constructor(props) {
@@ -276,7 +274,7 @@ export default class ChatSessionView extends React.Component {
         const { contentSize, text } = event.nativeEvent;
         
         var height = contentSize.height;
-        var maxHeight = INPUT_HEIGHT_MIN + 3*styles.inputText.fontSize;    //最多扩展4行
+        var maxHeight = INPUT_HEIGHT_MIN + 3*INPUT_FONT_SIZE;    //最多扩展4行
 
         if (height<INPUT_HEIGHT_MIN) height = INPUT_HEIGHT_MIN;
         if (height>maxHeight) height = maxHeight;
@@ -316,13 +314,10 @@ export default class ChatSessionView extends React.Component {
                   enableEmptySections={true}
               />
 
-              <View /*这个 View 必须存在，否则在使用 KeyboardAwareScrollView 后，上面 ListView 内容比较少的情况下无法撑满屏幕 */>
-                <KeyboardAwareScrollView
-                  contentContainerStyle={[
-                	  {height: this.state.inputContentHeight+styles.bottomView.padding*2},
-                	  styles.bottomView
-                  ]}>
-                
+              <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={247} contentContainerStyle={[
+            	  {height: this.state.inputContentHeight+INPUT_CONTAINER_PADDING*2},
+            	  styles.bottomView
+              ]}>
                   <Icon name="camera" style={styles.chatImageHandler} onPress={this.pressCamera.bind(this)}/>
                 
                   <View style={[{height: this.state.inputContentHeight}, styles.chatInputArea]}>
@@ -340,8 +335,7 @@ export default class ChatSessionView extends React.Component {
                     title="发送"
                     style={chatSessionCss.button}
                   />
-                </KeyboardAwareScrollView>
-              </View>
+              </KeyboardAvoidingView>
               
               <UploadProgress
                   ref={(uploadingProgress) => { this.uploadingProgress = uploadingProgress; }}
@@ -454,6 +448,10 @@ class ChatImageViewer extends React.Component {
 	}
 }
 
+const INPUT_HEIGHT_MIN=40;
+const INPUT_FONT_SIZE=14;
+const INPUT_CONTAINER_PADDING=5;
+
 var styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -522,7 +520,7 @@ var styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#DDDDDD',
-        padding:5
+        padding: INPUT_CONTAINER_PADDING
     },
     sendBtn: {
         alignItems: 'center',
@@ -619,7 +617,7 @@ var styles = StyleSheet.create({
     inputText: {
         flex:1,
         backgroundColor: 'transparent',
-        fontSize: 14,
+        fontSize: INPUT_FONT_SIZE,
         marginLeft:5
     },
     buttomSpacer: {
