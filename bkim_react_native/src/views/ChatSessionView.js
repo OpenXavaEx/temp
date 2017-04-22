@@ -275,7 +275,7 @@ export default class ChatSessionView extends React.Component {
 		          <Text style={ styles.titleText }>{this.chatInfo.talkToName}</Text>
 	              <TouchableHighlight
 		              underlayColor={chatSessionCss.TouchableHighlight.underlayColor}
-                      onPress={()=>{alert("Menus")}}
+                      onPress={()=>{/*alert("Menus")*/}}
 	              >
 	                  <Icon name='bars' style={styles.titleActionIcon}/>
 	              </TouchableHighlight>
