@@ -26,6 +26,7 @@ import PubSub from 'pubsub-js';
 import DialogStacks from '../utils/DialogStacks';
 
 import WebSocketService from '../backend/WebSocketService';
+import IMService from '../backend/IMService';
 
 import {colors, chatSessionCss} from '../styles';
 
@@ -179,6 +180,33 @@ export default class ChatSessionView extends React.Component {
         }}/>
     }
 
+    _sendMessage(type, data){
+        var msg = {
+        	type: type,
+        	data: data,
+			sender: this.chatInfo.talkFrom,
+			senderName: this.chatInfo.talkFromName,
+			receiver: this.chatInfo.talkTo,
+			receiverName: this.chatInfo.talkToName,
+			timestamp: (new Date()).getTime()
+        }
+        
+        this.websocket.sendMessage(msg);
+        this.messages.push(msg);
+
+        if ("TEXT"==type){
+            this.refs._textInput.clear();
+            this.setState({
+                inputContentText:'',
+                dataSource: this.state.dataSource.cloneWithRows(this.messages)
+            })
+        }else{
+            this.setState({
+                dataSource: this.state.dataSource.cloneWithRows(this.messages)
+            })
+        }
+    }
+    
     pressSendBtn(){
         if(this.state.inputContentText.trim().length <= 0){
             return;
@@ -187,24 +215,7 @@ export default class ChatSessionView extends React.Component {
         	return;
         }
         
-        var txtMsg = {
-        	type: "TEXT",
-        	data: this.state.inputContentText,
-			sender: this.chatInfo.talkFrom,
-			senderName: this.chatInfo.talkFromName,
-			receiver: this.chatInfo.talkTo,
-			receiverName: this.chatInfo.talkToName,
-			timestamp: (new Date()).getTime()
-        }
-        
-        this.websocket.sendMessage(txtMsg);
-        this.messages.push(txtMsg);
-
-        this.refs._textInput.clear();
-        this.setState({
-            inputContentText:'',
-            dataSource: this.state.dataSource.cloneWithRows(this.messages)
-        })
+        this._sendMessage("TEXT", this.state.inputContentText);
     }
     
     pressCamera(){
@@ -217,8 +228,8 @@ export default class ChatSessionView extends React.Component {
 			takePhotoButtonTitle: '拍照',
 			chooseFromLibraryButtonTitle: '从相册选择',
 			cancelButtonTitle: '取消',
-			maxWidth: 500,
-		    maxHeight: 500,
+			maxWidth: 1024,
+		    maxHeight: 1024,
 			storageOptions: {
 			    skipBackup: true,
 			    path: 'bkim-images'
@@ -232,27 +243,20 @@ export default class ChatSessionView extends React.Component {
 			} else {
 			    let source = { uri: response.uri };
 				this.uploadingProgress.show(source);
-				return;
 				
-	            var imgMsg = {
-		        	type: "IMAGE",
-		        	data: {
-		        		
-		        	},
-					sender: this.chatInfo.talkFrom,
-					senderName: this.chatInfo.talkFromName,
-					receiver: this.chatInfo.talkTo,
-					receiverName: this.chatInfo.talkToName,
-					timestamp: (new Date()).getTime()
-		        }
-		        
-		        this.websocket.sendMessage(imgMsg);
-		        this.messages.push(imgMsg);
-		
-		        this.setState({
-		            dataSource: this.state.dataSource.cloneWithRows(this.messages)
-		        })
-
+				let imSrv = new IMService(this.props.config);
+				imSrv.upload(response.fileName, response.path, (written, total) => {
+					var progress = (written*100/total).toFixed(0);
+					this.uploadingProgress.setProgress(progress);
+				}, (result) => {
+					DialogStacks.closeTop();
+					this._sendMessage("IMAGE", {
+		        		fileName: result.fileName,
+		        		fileUrl: result.url
+		        	});
+				}, (err) => {
+					DialogStacks.closeTop();
+				});
 			}
 		});
     }
@@ -278,12 +282,12 @@ export default class ChatSessionView extends React.Component {
 		      </View>
 
               <ListView style={ styles.messageList }
-                ref='_listView'
-                onLayout={(e)=>{this.listHeight = e.nativeEvent.layout.height;}}
-                dataSource={this.state.dataSource}
-                renderRow={this.renderEveryData.bind(this)}
-                renderFooter={this.myRenderFooter.bind(this)}
-                enableEmptySections={true}
+                  ref='_listView'
+                  onLayout={(e)=>{this.listHeight = e.nativeEvent.layout.height;}}
+                  dataSource={this.state.dataSource}
+                  renderRow={this.renderEveryData.bind(this)}
+                  renderFooter={this.myRenderFooter.bind(this)}
+                  enableEmptySections={true}
               />
 
               <View /*这个 View 必须存在，否则在使用 KeyboardAwareScrollView 后，上面 ListView 内容比较少的情况下无法撑满屏幕 */>
@@ -380,9 +384,13 @@ class ChatImageViewer extends React.Component {
         };
     }
 	componentDidMount() {
-		Image.getSize(this.props.source.uri, (width, height) => {
-			this.setState({width, height}); 
-		});
+		try{
+			Image.getSize(this.props.source.uri, (width, height) => {
+				this.setState({width, height}); 
+			});
+		}catch(ex){
+			//Ignore exception
+		}
 	}
 	render() {
 		if (this.state.width && this.state.height){
