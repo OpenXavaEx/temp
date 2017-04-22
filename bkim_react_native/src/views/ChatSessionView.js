@@ -245,11 +245,16 @@ export default class ChatSessionView extends React.Component {
 			} else if (response.error) {
 			    alert("发送图片失败: "+response.error);
 			} else {
-			    let source = { uri: response.uri };
-				this.uploadingProgress.show(source);
+				let fileUri = response.uri;
+				this.uploadingProgress.show({uri: fileUri});
+				
+				var filePath = response.path;
+				if (!filePath){
+					filePath = fileUri.replace("file://", "");    //某些情况下（比如在 iOS 下）response.path 为空
+				}
 				
 				let imSrv = new IMService(this.props.config);
-				imSrv.upload(response.fileName, response.path, (written, total) => {
+				imSrv.upload(response.fileName, filePath, (written, total) => {
 					var progress = (written*100/total).toFixed(0);
 					this.uploadingProgress.setProgress(progress);
 				}, (result) => {
