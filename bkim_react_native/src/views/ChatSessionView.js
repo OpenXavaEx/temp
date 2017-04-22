@@ -11,7 +11,6 @@ import {
     Image,
     PixelRatio,
     ListView,
-    KeyboardAvoidingView,
     StyleSheet,
     TextInput,
     Dimensions,
@@ -314,7 +313,7 @@ export default class ChatSessionView extends React.Component {
                   enableEmptySections={true}
               />
 
-              <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={247} contentContainerStyle={[
+              <View style={[
             	  {height: this.state.inputContentHeight+INPUT_CONTAINER_PADDING*2},
             	  styles.bottomView
               ]}>
@@ -335,7 +334,7 @@ export default class ChatSessionView extends React.Component {
                     title="发送"
                     style={chatSessionCss.button}
                   />
-              </KeyboardAvoidingView>
+              </View>
               
               <UploadProgress
                   ref={(uploadingProgress) => { this.uploadingProgress = uploadingProgress; }}
