@@ -39,6 +39,10 @@ var doWebSocketConnect = function(config, fromUser, toUser, fromUserName, toUser
     if (webSocketClient){
     	webSocketClient.close();
     }
+    
+    //FIXME: 目前在连接出错的情况下没有太好的方法清除原有的消息显示
+    PubSub.publish("RecentHistory", {messages: []});
+    
     webSocketClient = new WebSocket(wsUrl);
     webSocketClient.onopen = () => {
         // 打开一个连接

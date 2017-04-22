@@ -23,6 +23,7 @@ import Modal from 'react-native-root-modal';
 import InputScrollView from 'react-native-inputscrollview';
 
 import PubSub from 'pubsub-js';
+import debounce from 'lodash.debounce';
 
 import DialogStacks from '../utils/DialogStacks';
 
@@ -107,7 +108,14 @@ export default class ChatSessionView extends React.Component {
             }
         }
     }
-
+    
+    componentDidUpdate(prevProps, prevState) {
+    	if (prevProps.chatInfo.sessionStartTime != this._prevSessionStartTime){
+        	//避免前一个会话消息很多(滚动到很下面)而当前会话消息很少时，ListView 滚动超过底部，导致看不到当前消息
+        	this.refs._listView.scrollTo({y:0, animated:false});
+    	}
+    }
+    
     renderEveryData(msg) {
         var msgType = msg.type;
         if ("BLANK"==msgType){
@@ -169,17 +177,25 @@ export default class ChatSessionView extends React.Component {
   		);
     }
 
-    myRenderFooter(e){
+    _doScrollToFooter(){
+    	this.refs._listView.scrollTo({y:this.scrollToFooterDistance, animated:true});
+    }
+    
+    scrollToRenderFooter(e){
     	//让新的数据永远展示在ListView的底部
-    	//通过ListView的renderFooter 绘制一个0高度的view，通过获取其Y位置，其实就是获取到了ListView内容高度底部的Y位置
-        return <View onLayout={(e)=> {
-            this.footerY= e.nativeEvent.layout.y;
+    	//通过 ListView 的 renderFooter 绘制一个0高度的view，通过获取其Y位置，其实就是获取到了ListView内容高度底部的Y位置
+    	if (! this._tempFooter){
+    		var _debounce = debounce(this._doScrollToFooter, 50);    //FIXME: 此处使用 debounce 并无明显效果
+            this._tempFooter =( <View onLayout={(e)=> {
+                this.footerY= e.nativeEvent.layout.y;
 
-            if (this.listHeight && this.footerY &&this.footerY>this.listHeight) {
-                var scrollDistance = this.listHeight - this.footerY;
-                this.refs._listView.scrollTo({y:-scrollDistance});
-            }
-        }}/>
+                if (this.listHeight && this.footerY &&this.footerY>this.listHeight) {
+                    this.scrollToFooterDistance = this.footerY - this.listHeight;
+                    _debounce.call(this);
+                }
+            }}/> );
+    	}
+    	return this._tempFooter;
     }
 
     _sendMessage(type, data){
@@ -197,7 +213,6 @@ export default class ChatSessionView extends React.Component {
         this.messages.push(msg);
 
         if ("TEXT"==type){
-            this.refs._textInput.clear();
             this.setState({
                 inputContentText: '',
                 inputContentHeight: INPUT_HEIGHT_MIN,
@@ -288,7 +303,7 @@ export default class ChatSessionView extends React.Component {
     
     render() {
         return (
-            <InputScrollView contentContainerStyle={ styles.container }>
+            <InputScrollView contentContainerStyle={styles.container}>
 	        
               <View style={styles.title}>
 	              <TouchableHighlight
@@ -311,8 +326,9 @@ export default class ChatSessionView extends React.Component {
                   onLayout={(e)=>{this.listHeight = e.nativeEvent.layout.height;}}
                   dataSource={this.state.dataSource}
                   renderRow={this.renderEveryData.bind(this)}
-                  renderFooter={this.myRenderFooter.bind(this)}
+                  renderFooter={this.scrollToRenderFooter.bind(this)}
                   enableEmptySections={true}
+                  pageSize={1000}   /* 设置较大的 pageSize 可以避免加载历史消息时多次 renderFooter */
               />
 
               <View style={[
@@ -324,6 +340,7 @@ export default class ChatSessionView extends React.Component {
                   <View style={[{height: this.state.inputContentHeight}, styles.chatInputArea]}>
                     <TextInput
                         ref='_textInput'
+                        value={this.state.inputContentText}
                         onChange={this._onTextChange.bind(this)}
                         placeholder=' 请输入对话内容'
                         returnKeyType='done'
