@@ -19,6 +19,7 @@
     "react-native-popup-dialog": "^0.7.22",
     "react-native-prompt": "^1.0.0",
     "react-native-root-modal": "^1.1.0",
+    "react-native-root-toast": "^1.0.5",
     "react-native-scrollable-tab-view": "^0.7.0",
     "react-native-storage": "^0.1.4",
     "react-native-vector-icons": "^4.0.0"

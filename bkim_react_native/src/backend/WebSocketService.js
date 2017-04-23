@@ -145,9 +145,8 @@ WebSocketService.prototype.sendMessage = function(message){
 	doSendMessage(this.config, message);
 }
 
-WebSocketService.prototype.buildImageUrl = function(message, resizeType){
-	var imgUrl = message.data.fileUrl;
-	return this.uploadUrl + message.data.fileUrl + "?resize="+resizeType+"&t="+this.config.token;
+WebSocketService.prototype.buildImageUrl = function(fileUrl, resizeType){
+	return this.uploadUrl + fileUrl + "?resize="+resizeType+"&t="+this.config.token;
 }
 
 module.exports = WebSocketService;

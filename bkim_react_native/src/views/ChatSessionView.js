@@ -15,6 +15,7 @@ import {
     StyleSheet,
     TextInput,
     Dimensions,
+    Linking,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -26,6 +27,7 @@ import PubSub from 'pubsub-js';
 import debounce from 'lodash.debounce';
 
 import DialogStacks from '../utils/DialogStacks';
+import UITools from '../utils/UITools';
 
 import WebSocketService from '../backend/WebSocketService';
 import IMService from '../backend/IMService';
@@ -69,13 +71,26 @@ export default class ChatSessionView extends React.Component {
         PubSub.subscribe("ChatSessionView/File", function(msg, file){
         	var fileName = file.name;
         	var fileUrl = file.url;
-        	alert(fileUrl);
+        	self._openURL(fileName, fileUrl);
         });
         PubSub.subscribe("ChatSessionView/Image", function(msg, file){
         	var fileName = file.name;
         	var fileUrl = file.url;
-        	alert(fileUrl);
+        	self._openURL(fileName, fileUrl);
         });
+    }
+    
+    _openURL(fileName, fileUrl){
+    	if (!this.websocket) return;
+    	
+    	var realUrl = this.websocket.buildImageUrl(fileUrl, "");
+    	Linking.canOpenURL(realUrl).then(supported => {
+    		if (supported) {
+    			Linking.openURL(realUrl);
+    		} else {
+    			UITools.errorToast("当前系统不支持文件 " + fileName);
+    		}
+    	});
     }
 
     componentWillReceiveProps(nextProps){
@@ -132,10 +147,14 @@ export default class ChatSessionView extends React.Component {
                 </Text>
             );
         }else if ("IMAGE"==msgType){
-        	var url = msg.data.fileUrl;
-        	var previewUrl = this.websocket.buildImageUrl(msg, "icon");
+        	var previewUrl = this.websocket.buildImageUrl(msg.data.fileUrl, "icon");
         	var fileName = msg.data.fileName;
-        	chatContent = <ChatImageViewer isMe={isMe} fileName={fileName} source={{uri: previewUrl}} />
+        	chatContent = (
+        		<ChatImageViewer
+        		    isMe={isMe}
+        		    fileUrl={msg.data.fileUrl} fileName={fileName}
+        		    source={{uri: previewUrl}} />
+        	);
         }else if ("FILE"==msgType){
         	var url = msg.data.fileUrl;
         	var fileName = msg.data.fileName;
@@ -441,7 +460,7 @@ class ChatImageViewer extends React.Component {
 				<TouchableHighlight
 				    underlayColor={chatSessionCss.TouchableHighlight.underlayColor}
 				    onPress={() => PubSub.publish("ChatSessionView/Image", {
-				    	name: this.props.fileName, url: this.props.source.uri
+				    	name: this.props.fileName, url: this.props.fileUrl
 				    })}
 				>
 					<Image
