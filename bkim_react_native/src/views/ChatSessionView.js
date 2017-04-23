@@ -276,7 +276,7 @@ export default class ChatSessionView extends React.Component {
 			if (response.didCancel) {
 			    // User cancel, do nothing
 			} else if (response.error) {
-			    alert("发送图片失败: "+response.error);
+				UITools.errorToast("发送图片失败: "+response.error);
 			} else {
 				let fileUri = response.uri;
 				this.uploadingProgress.show({uri: fileUri});

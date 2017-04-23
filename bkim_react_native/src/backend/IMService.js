@@ -1,5 +1,7 @@
 'use strict';
 
+import UITools from '../utils/UITools';
+
 import RNFetchBlob from 'react-native-fetch-blob';
 
 var _handleUploadError = function(fileName, err, errorCallback){
@@ -7,7 +9,7 @@ var _handleUploadError = function(fileName, err, errorCallback){
     if (err && err.message){
     	msg = msg + ": " + err.message;
     }
-    alert(msg);
+    UITools.errorToast(msg);
     //Call error handler
     errorCallback(err);
 }
