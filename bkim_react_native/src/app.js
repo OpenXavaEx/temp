@@ -8,6 +8,7 @@ import {
     Dimensions,
     BackAndroid
 } from 'react-native';
+import ErrorUtils from "ErrorUtils";
 
 import ScrollableTabView, {DefaultTabBar, } from 'react-native-scrollable-tab-view';
 
@@ -16,6 +17,7 @@ import PopupDialog from 'react-native-popup-dialog';
 import PubSub from 'pubsub-js';
 
 import DialogStacks from './utils/DialogStacks';
+import UITools from './utils/UITools';
 
 import ConfigView from './views/ConfigView';
 import ContactsView from './views/ContactsView';
@@ -33,6 +35,13 @@ var IM_CONFIGS = {/*
 */};
 
 var doInitIM = function(app, manual){
+	if (!manual && !app.props.debugMode){
+		//如果是正式运行状态, 初始化全局错误处理
+    	ErrorUtils.setGlobalHandler((e)=>{
+    	　　UITools.errorToast("系统错误: " + JSON.stringify(e))
+    	});
+	}
+	
     var ws = new WebSocketService(IM_CONFIGS);
     ws.initConnect();
 
