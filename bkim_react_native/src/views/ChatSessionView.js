@@ -34,6 +34,8 @@ import IMService from '../backend/IMService';
 
 import {colors, chatSessionCss} from '../styles';
 
+var moment = require("moment");
+
 export default class ChatSessionView extends React.Component {
     constructor(props) {
         super(props);
@@ -186,6 +188,9 @@ export default class ChatSessionView extends React.Component {
                 <View style={{width:sWidth - 20}}>
     				<View style={isMe==true?styles.talkViewRight:styles.talkView}>
                         {chatContent}
+        				<Text style={[{alignSelf:(isMe==true?'flex-start':'flex-end')}, styles.talkTime]}>
+        				    {moment(msg.timestamp).fromNow()}
+        				</Text>
     				</View>
                 </View>
                 <Image
@@ -629,6 +634,18 @@ var styles = StyleSheet.create({
         flex: 1,
         fontSize: 10,
         fontWeight: 'normal',
+    },
+    talkTime:{
+    	fontSize: 10,
+        fontWeight: 'normal',
+    	color: colors.DimGray,
+        backgroundColor: 'rgba(211,211,211,0.3)',	//211=D3, colors.LightGray with alpha=0.3
+        padding: 1,
+        paddingLeft: 5,
+        paddingRight: 5,
+        borderRadius: 3,
+        position: 'relative',
+        top: 3,
     },
 
     chatImageHandler: {

@@ -164,10 +164,27 @@ var sessionsCss = {
         flexDirection: 'column',
         justifyContent: 'center',
         height: 50,
+        flex: 1,
     },
     sessionName: {
         color: colors.Black,
         fontSize: 14,
+    },
+    sessionMessage: {
+    	color: colors.Gray,
+    	fontSize: 11,
+    },
+    sessionMsgCountContainer: {
+    	alignSelf: 'center',	//垂直方向居中
+    	alignItems: 'center',
+    	minWidth: 20,
+    	height: 20,
+    	borderRadius: 10,
+    	backgroundColor: colors.Red,
+    },
+    sessionMsgCount: {
+    	color: colors.White,
+    	fontSize: 12,
     }
 };
 CSS.mix(common, sessionsCss);

@@ -27,6 +27,11 @@ import ChatSessionView from './views/ChatSessionView';
 import HostService from './backend/HostService';
 import WebSocketService from './backend/WebSocketService';
 
+//初始化 moment.js
+var moment = require("moment");
+require("moment/locale/zh-cn");
+moment.locale("zh-cn");
+
 var IM_CONFIGS = {/*
     imServerUrl:    'example.com:7778/boke-messager',
     hostServerUrl:  'example.com:8080/im-service/${service}.json',
@@ -110,6 +115,10 @@ var doOpenChatSession = function(app, userCode){
 		});
 		app.chattingDialog.show();
 		DialogStacks.push(app.chattingDialog, function(dialog, data){
+			//关闭会话窗口后，中断原有 WebSocket 连接(重新构建一个 self connection)
+		    var ws = new WebSocketService(IM_CONFIGS);
+		    ws.initConnect();
+			
 			dialog.dismiss();
 			return true;
 		});
