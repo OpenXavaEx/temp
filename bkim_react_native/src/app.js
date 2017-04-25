@@ -3,9 +3,12 @@
 import React, { Component, PropTypes } from 'react';
 import {
     Text,
+    Button,
     View,
     ScrollView,
+    TouchableOpacity,
     Dimensions,
+    StyleSheet,
     BackAndroid
 } from 'react-native';
 import ErrorUtils from "ErrorUtils";
@@ -26,6 +29,8 @@ import ChatSessionView from './views/ChatSessionView';
 
 import HostService from './backend/HostService';
 import WebSocketService from './backend/WebSocketService';
+
+import {colors, mainCss} from './styles';
 
 //初始化 moment.js
 var moment = require("moment");
@@ -133,7 +138,7 @@ export default class App extends Component {
             contactsData: [],
             myActiveConnectData: [],
             chatInfo: {},
-            navigatorOffSet: 0
+            navigatorOffSet: 0, //通过计算因为 navigator 等外部因素引入的顶部空间, 以实现聊天对话框的正确显示
         };
         
         if (this.props.debugMode){
@@ -187,6 +192,55 @@ export default class App extends Component {
     	}
     }
 
+    //在 react-native-scrollable-tab-view DefaultTabBar 的 renderTab 基础上修改
+    _renderTab(name, page, isTabActive, onPressHandler) {
+	    const activeTextColor  = 'navy';
+	    const inactiveTextColor = 'black';
+	    const textColor = isTabActive ? activeTextColor : inactiveTextColor;
+	    const fontWeight = isTabActive ? 'bold' : 'normal';
+
+	    const styles = StyleSheet.create({
+    	    tab: {
+    	        flex: 1,
+    	        flexDirection: 'row',
+    	        alignItems: 'center',
+    	        justifyContent: 'center',
+    	        paddingBottom: 10,
+    	    },
+    	    flexOne: {
+    	        flex: 1,
+    	    },
+    	});
+	    
+	    var decoration = null;
+	    if (1==page /*第二页: “会话”*/){
+	    	var unreaded = 0;
+	    	if (this.state.myActiveConnectData){
+	    		unreaded = this.state.myActiveConnectData.total;
+	    	}
+	    	if (unreaded && unreaded > 0){
+	    		decoration = (
+	    			<View style={mainCss.messageNotice} />
+	    		);
+	    	}
+	    }
+	    
+	    return (
+	        <TouchableOpacity
+		      style={styles.flexOne}
+		      key={name}
+		      onPress={() => onPressHandler(page)}
+		    >
+				<View style={[styles.tab, ]}>
+				    <Text style={[{color: textColor, fontWeight, }, ]}>
+				      {name}
+				    </Text>
+    			    {decoration}
+				</View>
+			</TouchableOpacity>
+	    );
+	}
+    
     render() {
         return (
         	<View style={{flex:1, flexDirection: 'row'}}
@@ -194,7 +248,8 @@ export default class App extends Component {
         	
 	            <ScrollableTabView ref='mainTab'
 	                style={{marginTop: 10, }}
-	                renderTabBar={() => <DefaultTabBar/>} >
+	                renderTabBar={() => <DefaultTabBar renderTab={this._renderTab.bind(this)}/>}
+	            >
 	                <ContactsView tabLabel='联系人' contacts={this.state.contactsData}/>
 	                <SessionsView tabLabel='会话' sessions={this.state.myActiveConnectData.sessions}/>
 	                {this._configTabRenderIf()}

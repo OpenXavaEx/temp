@@ -73,6 +73,20 @@ var common = {
     }
 }
 
+/** Styles for app */
+var mainCss = {
+	messageNotice: {
+    	width: 8,
+    	height: 8,
+    	borderRadius: 4,
+    	backgroundColor: colors.Red,
+    	position: 'relative',
+    	margin: 5,
+    	top: -5,
+	}
+}
+CSS.mix(common, mainCss);
+
 /** Styles for ConfigView */
 var configCss = {
     section: {
@@ -197,6 +211,7 @@ CSS.mix(common, chatSessionCss);
 
 module.exports = {
     colors,
+    mainCss,
 	configCss,
     contactsCss,
     sessionsCss,
