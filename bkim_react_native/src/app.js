@@ -3,13 +3,10 @@
 import React, { Component, PropTypes } from 'react';
 import {
     Text,
-    Button,
     View,
-    ScrollView,
     TouchableOpacity,
     Dimensions,
-    StyleSheet,
-    BackAndroid
+    BackAndroid,
 } from 'react-native';
 import ErrorUtils from "ErrorUtils";
 
@@ -199,7 +196,7 @@ export default class App extends Component {
 	    const textColor = isTabActive ? activeTextColor : inactiveTextColor;
 	    const fontWeight = isTabActive ? 'bold' : 'normal';
 
-	    const styles = StyleSheet.create({
+	    const styles = { /*这是来自 react-native-scrollable-tab-view DefaultTabBar 的默认 style 定义*/
     	    tab: {
     	        flex: 1,
     	        flexDirection: 'row',
@@ -210,7 +207,7 @@ export default class App extends Component {
     	    flexOne: {
     	        flex: 1,
     	    },
-    	});
+    	};
 	    
 	    var decoration = null;
 	    if (1==page /*第二页: “会话”*/){
