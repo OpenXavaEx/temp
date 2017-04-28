@@ -1,5 +1,11 @@
 'use strict';
 
+var serialize = function (data) {
+    return Object.keys(data).map(function (keyName) {
+        return encodeURIComponent(keyName) + '=' + encodeURIComponent(data[keyName])
+    }).join('&');
+};
+
 var HostService = function(config){
     this.hostServerUrl = config.hostServerUrl;
     this.peerId = config.peerId;
@@ -29,7 +35,10 @@ var HostService = function(config){
 HostService.prototype.loadContactsData = function(callback){
     fetch(this.buddiesServiceUrl, {
         method: 'POST',
-        body: `t=${this.token}`
+        headers: {  
+            "Content-type": "application/x-www-form-urlencoded"
+        },
+        body: serialize({t: this.token})
     }).then(
         (response) => response.json()
     ).then((groups) => {
@@ -75,7 +84,10 @@ HostService.prototype.fetchUserInfo = function(userCodes, callback){
     	var usersParam = JSON.stringify(codesToQuery);
     	fetch(this.userinfoServiceUrl, {
             method: 'POST',
-            body: `users=${usersParam}&t=${this.token}`
+            headers: {  
+                "Content-type": "application/x-www-form-urlencoded"
+            },
+            body: serialize({t: this.token, users: usersParam})
         }).then(
             (response) => response.json()
         ).then((usersData) => {
