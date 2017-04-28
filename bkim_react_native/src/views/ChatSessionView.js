@@ -21,7 +21,6 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ImagePicker from 'react-native-image-picker';
 import Modal from 'react-native-root-modal';
-import InputScrollView from 'react-native-inputscrollview';
 
 import PubSub from 'pubsub-js';
 import debounce from 'lodash.debounce';
@@ -327,7 +326,7 @@ export default class ChatSessionView extends React.Component {
     
     render() {
         return (
-            <InputScrollView contentContainerStyle={styles.container}>
+            <View style={styles.container}>
 	        
               <View style={styles.title}>
 	              <TouchableHighlight
@@ -383,7 +382,7 @@ export default class ChatSessionView extends React.Component {
                   ref={(uploadingProgress) => { this.uploadingProgress = uploadingProgress; }}
               />
 
-            </InputScrollView>
+            </View>
         );
     }
 }

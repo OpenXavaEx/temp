@@ -18,3 +18,16 @@ rnpm-install info iOS module react-native-inputscrollview has been successfully 
 ```
 
 ***
+
+Uninstall
+react-native unlink react-native-inputscrollview
+```
+rnpm-install info Unlinking react-native-inputscrollview ios dependency
+rnpm-install info iOS module react-native-inputscrollview has been successfully unlinked
+```
+
+npm uninstall react-native-inputscrollview -S
+```
+- react-native-inputscrollview@2.0.1 node_modules/react-native-inputscrollview
+npm WARN react-native@0.39.2 requires a peer of react@~15.4.0-rc.4 but none was installed.
+```

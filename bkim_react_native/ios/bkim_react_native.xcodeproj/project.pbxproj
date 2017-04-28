@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -25,8 +24,6 @@
 		3B604EA71EAB985800824D8D /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B604E9F1EAB8AC000824D8D /* libRNImagePicker.a */; };
 		3B604EA91EABA7A500824D8D /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B604E9F1EAB8AC000824D8D /* libRNImagePicker.a */; };
 		3B604EAA1EABA7C500824D8D /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B604EA51EAB8AC000824D8D /* libRNFetchBlob.a */; };
-		3B7243621EABCA3700FC86B9 /* libInputScrollViewPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B72434B1EABCA2700FC86B9 /* libInputScrollViewPlugin.a */; };
-		3B7243631EABCB0100FC86B9 /* libInputScrollViewPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B72434B1EABCA2700FC86B9 /* libInputScrollViewPlugin.a */; };
 		3B9216211E83DDBA00BB391C /* BKIM_RNViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B92161F1E83DDBA00BB391C /* BKIM_RNViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B9216221E83DDBA00BB391C /* BKIM_RNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9216201E83DDBA00BB391C /* BKIM_RNViewController.m */; };
 		3BC09C411E9009AB00CFB9E7 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B2499AD1E8FF84E00AC693D /* FontAwesome.ttf */; };
@@ -120,13 +117,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = A15C300E1CD25C330074CB35;
 			remoteInfo = RNFetchBlob;
-		};
-		3B72434A1EABCA2700FC86B9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 48AA7CE1458B4C2987E258C3 /* InputScrollViewPlugin.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9182DCC91CBB66AC002206C2;
-			remoteInfo = InputScrollViewPlugin;
 		};
 		3BC0A92E1E81595500C23D8D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -240,7 +230,6 @@
 		3BDC95A51E81E20B00DD0EB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BDC95F11E81E31E00DD0EB1 /* BKIM_RN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKIM_RN.h; sourceTree = "<group>"; };
 		3BDC95F21E81E31E00DD0EB1 /* BKIM_RN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKIM_RN.m; sourceTree = "<group>"; };
-		48AA7CE1458B4C2987E258C3 /* InputScrollViewPlugin.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = InputScrollViewPlugin.xcodeproj; path = "../node_modules/react-native-inputscrollview/ios/InputScrollViewPlugin.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6B962EFE5B9F4808923BF3FE /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -287,7 +276,6 @@
 				3BDC960E1E81E89C00DD0EB1 /* libReact.a in Frameworks */,
 				3B604EA91EABA7A500824D8D /* libRNImagePicker.a in Frameworks */,
 				3B604EAA1EABA7C500824D8D /* libRNFetchBlob.a in Frameworks */,
-				3B7243631EABCB0100FC86B9 /* libInputScrollViewPlugin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,14 +381,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3B7243471EABCA2700FC86B9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3B72434B1EABCA2700FC86B9 /* libInputScrollViewPlugin.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		3BDC95A31E81E20B00DD0EB1 /* BKIM_ReactNative_Framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,7 +437,6 @@
 				6B962EFE5B9F4808923BF3FE /* RNVectorIcons.xcodeproj */,
 				34D64E2D56224CA797A6B288 /* RNImagePicker.xcodeproj */,
 				C12FCFF2CF39400FB7727ADC /* RNFetchBlob.xcodeproj */,
-				48AA7CE1458B4C2987E258C3 /* InputScrollViewPlugin.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -582,10 +561,6 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 3B7243471EABCA2700FC86B9 /* Products */;
-					ProjectRef = 48AA7CE1458B4C2987E258C3 /* InputScrollViewPlugin.xcodeproj */;
-				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -720,13 +695,6 @@
 			fileType = archive.ar;
 			path = libRNFetchBlob.a;
 			remoteRef = 3B604EA41EAB8AC000824D8D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3B72434B1EABCA2700FC86B9 /* libInputScrollViewPlugin.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libInputScrollViewPlugin.a;
-			remoteRef = 3B72434A1EABCA2700FC86B9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3BC0A92F1E81595500C23D8D /* libRCTImage-tvOS.a */ = {
@@ -913,8 +881,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/bkim_react_native\"",
-					"\"$(SRCROOT)/bkim_react_native\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -937,8 +903,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/bkim_react_native\"",
-					"\"$(SRCROOT)/bkim_react_native\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1069,7 +1033,6 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-inputscrollview/ios/InputScrollViewPlugin",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1118,7 +1081,6 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-inputscrollview/ios/InputScrollViewPlugin",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
