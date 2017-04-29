@@ -16,6 +16,8 @@ import {
     TextInput,
     Dimensions,
     Linking,
+    Keyboard,
+    Platform,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -42,6 +44,7 @@ export default class ChatSessionView extends React.Component {
         this.state = {
             inputContentText: '',
             inputContentHeight: INPUT_HEIGHT_MIN,
+            keyboardSpacerHeight: 0,  //留给软键盘的空间
             showUploadingProgress: false,
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
@@ -130,6 +133,25 @@ export default class ChatSessionView extends React.Component {
         	//避免前一个会话消息很多(滚动到很下面)而当前会话消息很少时，ListView 滚动超过底部，导致看不到当前消息
         	this.refs._listView.scrollTo({y:0, animated:false});
     	}
+    }
+    
+    componentDidMount() {
+	    this._keyboardWillShowSubscription =
+	    	Keyboard.addListener('keyboardDidShow', (e) => this._keyboardDidShow(e));
+	    this._keyboardWillHideSubscription =
+	    	Keyboard.addListener('keyboardDidHide', (e) => this._keyboardDidHide(e));
+	}
+
+    componentWillUnmount() {
+		this._keyboardWillShowSubscription.remove();
+		this._keyboardWillHideSubscription.remove();
+	}
+
+    _keyboardDidShow(e){
+       	this.setState({keyboardSpacerHeight: e.endCoordinates.height});
+    }
+    _keyboardDidHide(e){
+    	this.setState({keyboardSpacerHeight: 0});
     }
     
     renderEveryData(msg) {
@@ -327,7 +349,8 @@ export default class ChatSessionView extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-	        
+              <View style={{height:this.state.keyboardSpacerHeight}}></View>
+            
               <View style={styles.title}>
 	              <TouchableHighlight
   		              underlayColor={chatSessionCss.TouchableHighlight.underlayColor}
