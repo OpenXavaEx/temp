@@ -349,7 +349,7 @@ export default class ChatSessionView extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-              <View style={{height:this.state.keyboardSpacerHeight}}></View>
+              {(Platform.OS==="android")?(<View style={{height:this.state.keyboardSpacerHeight}}></View>):null}
             
               <View style={styles.title}>
 	              <TouchableHighlight
@@ -404,6 +404,8 @@ export default class ChatSessionView extends React.Component {
               <UploadProgress
                   ref={(uploadingProgress) => { this.uploadingProgress = uploadingProgress; }}
               />
+
+              {(Platform.OS==="ios")?(<View style={{height:this.state.keyboardSpacerHeight}}></View>):null}
 
             </View>
         );
