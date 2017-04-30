@@ -148,10 +148,16 @@ export default class ChatSessionView extends React.Component {
 	}
 
     _keyboardDidShow(e){
-       	this.setState({keyboardSpacerHeight: e.endCoordinates.height});
+       	this.setState({keyboardSpacerHeight: e.endCoordinates.height}, ()=>{
+       		this.scrollToFooterDistance = this.scrollToFooterDistance + this.state.keyboardSpacerHeight;
+   	    	this._doScrollToFooter();
+       	});
     }
     _keyboardDidHide(e){
-    	this.setState({keyboardSpacerHeight: 0});
+    	this.setState({keyboardSpacerHeight: 0}, ()=>{
+       		this.scrollToFooterDistance = this.scrollToFooterDistance - this.state.keyboardSpacerHeight;
+    		this._doScrollToFooter();
+    	});
     }
     
     renderEveryData(msg) {
@@ -223,7 +229,12 @@ export default class ChatSessionView extends React.Component {
     }
 
     _doScrollToFooter(){
-    	this.refs._listView.scrollTo({y:this.scrollToFooterDistance, animated:true});
+    	if (null!=this.scrollToFooterDistance){
+        	this.refs._listView.scrollTo({
+        		y: this.scrollToFooterDistance,
+        		animated:true
+        	});
+        }
     }
     
     scrollToRenderFooter(e){
