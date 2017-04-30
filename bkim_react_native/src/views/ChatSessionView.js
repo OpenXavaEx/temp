@@ -51,8 +51,10 @@ export default class ChatSessionView extends React.Component {
             }),
         };
         
-        this.listHeight = 0;
-        this.footerY = 0;
+        /** 消息 ListView 的高度 */
+        this.msgListHeight = 0;
+        /** 最后检测到的滚动到底部需要的距离, 在消息 ListView 的 renderFooter 中检测 */
+        this.msgListScrollTo = 0;
         
         this.chatInfo = {};
         this.messages = [];
@@ -131,7 +133,7 @@ export default class ChatSessionView extends React.Component {
     componentDidUpdate(prevProps, prevState) {
     	if (prevProps.chatInfo.sessionStartTime != this._prevSessionStartTime){
         	//避免前一个会话消息很多(滚动到很下面)而当前会话消息很少时，ListView 滚动超过底部，导致看不到当前消息
-        	this.refs._listView.scrollTo({y:0, animated:false});
+        	this.messageListView.scrollTo({y:0, animated:false});
     	}
     }
     
@@ -149,14 +151,25 @@ export default class ChatSessionView extends React.Component {
 
     _keyboardDidShow(e){
        	this.setState({keyboardSpacerHeight: e.endCoordinates.height}, ()=>{
-       		this.scrollToFooterDistance = this.scrollToFooterDistance + this.state.keyboardSpacerHeight;
-   	    	this._doScrollToFooter();
+   			/**
+   			 * 因为在软键盘出现时, 显示消息的 ListView 变短, 可能造成显示的消息不再是最后一条, 所以
+   			 * 需要重新设置 ListView 的 “scrollTo”;
+   			 * 注意: 至少在 Android 上必须通过 setTimeout() 进行调用
+   			 */
+       		setTimeout(()=>{
+           		this.messageListView.scrollTo({
+            		y: this.msgListScrollTo + this.state.keyboardSpacerHeight,
+            		animated:true
+            	});
+       		}, 200);
        	});
     }
     _keyboardDidHide(e){
     	this.setState({keyboardSpacerHeight: 0}, ()=>{
-       		this.scrollToFooterDistance = this.scrollToFooterDistance - this.state.keyboardSpacerHeight;
-    		this._doScrollToFooter();
+       		this.messageListView.scrollTo({
+        		y: this.msgListScrollTo - this.state.keyboardSpacerHeight,
+        		animated:true
+        	});
     	});
     }
     
@@ -229,24 +242,21 @@ export default class ChatSessionView extends React.Component {
     }
 
     _doScrollToFooter(){
-    	if (null!=this.scrollToFooterDistance){
-        	this.refs._listView.scrollTo({
-        		y: this.scrollToFooterDistance,
-        		animated:true
-        	});
+    	if (this.msgListScrollTo){
+        	this.messageListView.scrollTo({ y: this.msgListScrollTo, animated:true });
         }
     }
     
     scrollToRenderFooter(e){
-    	//让新的数据永远展示在ListView的底部
-    	//通过 ListView 的 renderFooter 绘制一个0高度的view，通过获取其Y位置，其实就是获取到了ListView内容高度底部的Y位置
+    	//让新的数据永远展示在 ListView 的底部
+    	//通过 ListView 的 renderFooter 绘制一个0高度的 view，通过获取其Y位置，其实就是获取到了 ListView 内容高度底部的Y位置
     	if (! this._tempFooter){
     		var _debounce = debounce(this._doScrollToFooter, 50);    //FIXME: 此处使用 debounce 并无明显效果
             this._tempFooter =( <View onLayout={(e)=> {
-                this.footerY= e.nativeEvent.layout.y;
+                var footerY= e.nativeEvent.layout.y;
 
-                if (this.listHeight && this.footerY &&this.footerY>this.listHeight) {
-                    this.scrollToFooterDistance = this.footerY - this.listHeight;
+                if (this.msgListHeight && footerY && footerY>this.msgListHeight) {
+                    this.msgListScrollTo = footerY - this.msgListHeight;
                     _debounce.call(this);
                 }
             }}/> );
@@ -360,7 +370,17 @@ export default class ChatSessionView extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-              {(Platform.OS==="android")?(<View style={{height:this.state.keyboardSpacerHeight}}></View>):null}
+              {
+            	  /**
+            	   * 在 Andorid 中对软键盘的处理是自动的(最开始并不是这样, 但是目前确实是自动的, 可能和引入了某些模块有关, 或者是因为
+            	   * 在引入某些模块时升级了 SDK 及 Gradle 版本有关), 文本框获得焦点后软键盘出现时, 自动将界面向上推, 此时调用 measure
+            	   * 方法并不能检测出 View 的位置变化(比如软键盘出现后, title 部分会显示在屏幕之外, 但是通过 measure 获得的 y 仍然是
+            	   * 原来的值 - 0, 而 container view 的 onLayout 方法也不会被触发).
+            	   * 
+            	   * 因此在这种情况下, 下面的代码产生一个空白的 View, 其作用是将 title 下推到屏幕顶部.
+            	   */
+            	  (Platform.OS==="android")?(<View style={{height:this.state.keyboardSpacerHeight}}></View>):null
+              }
             
               <View style={styles.title}>
 	              <TouchableHighlight
@@ -379,8 +399,8 @@ export default class ChatSessionView extends React.Component {
 		      </View>
 
               <ListView style={ styles.messageList }
-                  ref='_listView'
-                  onLayout={(e)=>{this.listHeight = e.nativeEvent.layout.height;}}
+                  ref={(listView) => { this.messageListView = listView; }}
+                  onLayout={(e)=>{this.msgListHeight = e.nativeEvent.layout.height;}}
                   dataSource={this.state.dataSource}
                   renderRow={this.renderEveryData.bind(this)}
                   renderFooter={this.scrollToRenderFooter.bind(this)}
@@ -396,7 +416,6 @@ export default class ChatSessionView extends React.Component {
                 
                   <View style={[{height: this.state.inputContentHeight}, styles.chatInputArea]}>
                     <TextInput
-                        ref='_textInput'
                         value={this.state.inputContentText}
                         onChange={this._onTextChange.bind(this)}
                         placeholder=' 请输入对话内容'
@@ -416,7 +435,13 @@ export default class ChatSessionView extends React.Component {
                   ref={(uploadingProgress) => { this.uploadingProgress = uploadingProgress; }}
               />
 
-              {(Platform.OS==="ios")?(<View style={{height:this.state.keyboardSpacerHeight}}></View>):null}
+              {
+            	  /**
+            	   * 在 iOS 中, 当软键盘出现时, 整个界面并不发生变化, 因此使用下面的代码, 通过一个空白的 View, 将原有界面元素
+            	   * 向上推, 以显示在软键盘之上.
+            	   */
+            	  (Platform.OS==="ios")?(<View style={{height:this.state.keyboardSpacerHeight}}></View>):null
+              }
 
             </View>
         );
